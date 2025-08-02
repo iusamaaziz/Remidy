@@ -7,6 +7,40 @@ using Remidy.Models;
 
 namespace Remidy.PageModels
 {
+    /// <summary>
+    /// ViewModel for the Manage Metadata Page that handles all medical classification types and system metadata.
+    /// Provides comprehensive CRUD operations for lookup types, categories, and tags used throughout the application.
+    /// </summary>
+    /// <remarks>
+    /// This page model manages the following types of data:
+    /// 
+    /// Medical Classification Types (ILookup implementations):
+    /// - BMI Categories, Constitution Types, Nature Types, Look Types
+    /// - Complexion Types, Temperament Types, Hand Types, Face Types
+    /// - Nail Types, Speaking Types, Tongue Types, Throat Types
+    /// - Neck Types, Foot Types, Eye Types, Hair Types
+    /// - Cause of Disease Types, Sensation Types, Treatment Types
+    /// - Responded to Treatment Types, Blood Group Types
+    /// - Case Condition Types, Personal Habit Types
+    /// 
+    /// System Metadata:
+    /// - Categories: Case categorization system
+    /// - Tags: Flexible labeling system
+    /// 
+    /// Features:
+    /// - Full CRUD operations for all lookup types
+    /// - Bulk save operations for efficient data management
+    /// - Add/Delete individual items with immediate feedback
+    /// - Seed data population for initial setup
+    /// - Toast notifications for user feedback
+    /// - Consistent UI patterns across all lookup types
+    /// 
+    /// Architecture:
+    /// - Uses Repository Pattern for data access
+    /// - Implements MVVM with ObservableObject base
+    /// - Leverages CommunityToolkit.Mvvm for property generation
+    /// - Factory pattern for lookup repository management
+    /// </remarks>
     public partial class ManageMetaPageModel(
         CategoryRepository categoryRepository,
         LookupRepositoryFactory lookupFactory,
@@ -76,9 +110,29 @@ namespace Remidy.PageModels
         [ObservableProperty]
         private ObservableCollection<PersonalHabitType> _personalHabitTypes = [];
 
+        /// <summary>
+        /// Collection of flexible tags for labeling and organizing case records.
+        /// Supports dynamic tagging system for enhanced categorization.
+        /// </summary>
         [ObservableProperty]
         private ObservableCollection<Tag> _tags = [];
 
+        /// <summary>
+        /// Loads all metadata from the database into observable collections.
+        /// This method populates all lookup types, categories, and tags for the manage metadata UI.
+        /// </summary>
+        /// <remarks>
+        /// Loading Process:
+        /// 1. Retrieves data from respective repositories
+        /// 2. Converts to ObservableCollection for UI binding
+        /// 3. Loads all medical classification types (ILookup implementations)
+        /// 4. Loads system metadata (Categories, Tags)
+        /// 
+        /// Performance Consideration:
+        /// - All data is loaded simultaneously for comprehensive metadata management
+        /// - Uses factory pattern for efficient repository access
+        /// - Data is cached in observable collections for responsive UI interactions
+        /// </remarks>
         private async Task LoadData()
         {
             var categoriesList = await categoryRepository.ListAsync();
@@ -148,11 +202,20 @@ namespace Remidy.PageModels
             Tags = new ObservableCollection<Tag>(tagsList);
         }
 
+        /// <summary>
+        /// Command executed when the page appears. Loads all metadata from the database.
+        /// </summary>
+        /// <returns>Task representing the data loading operation</returns>
         [RelayCommand]
         private Task Appearing()
             => LoadData();
 
         #region Categories
+        /// <summary>
+        /// Saves all modified categories to the database.
+        /// Iterates through the Categories collection and persists each item.
+        /// </summary>
+        /// <returns>Task representing the save operation with user feedback</returns>
         [RelayCommand]
         private async Task SaveCategories()
         {
@@ -164,6 +227,11 @@ namespace Remidy.PageModels
             await AppShell.DisplayToastAsync("Categories saved");
         }
 
+        /// <summary>
+        /// Deletes a specific category from both the UI collection and database.
+        /// </summary>
+        /// <param name="category">The category to delete</param>
+        /// <returns>Task representing the delete operation with user feedback</returns>
         [RelayCommand]
         private async Task DeleteCategory(Category category)
         {
@@ -172,6 +240,11 @@ namespace Remidy.PageModels
             await AppShell.DisplayToastAsync("Category deleted");
         }
 
+        /// <summary>
+        /// Adds a new category to both the UI collection and database.
+        /// Creates a new Category instance and immediately saves it.
+        /// </summary>
+        /// <returns>Task representing the add operation with user feedback</returns>
         [RelayCommand]
         private async Task AddCategory()
         {
@@ -183,6 +256,20 @@ namespace Remidy.PageModels
         #endregion
 
         #region BMI
+        /// <summary>
+        /// Saves all BMI categories to the database.
+        /// This method follows the standard lookup type save pattern used throughout the application.
+        /// </summary>
+        /// <remarks>
+        /// Standard Lookup Type Save Pattern:
+        /// 1. Iterate through the observable collection
+        /// 2. Use factory pattern to get the appropriate repository
+        /// 3. Save each item individually (handles both insert and update)
+        /// 4. Display user feedback via toast notification
+        /// 
+        /// This pattern is replicated for all ILookup implementing types.
+        /// </remarks>
+        /// <returns>Task representing the save operation</returns>
         [RelayCommand]
         private async Task SaveBMICategories()
         {
@@ -194,6 +281,12 @@ namespace Remidy.PageModels
             await AppShell.DisplayToastAsync("BMI Categories saved");
         }
 
+        /// <summary>
+        /// Deletes a specific BMI category from both UI and database.
+        /// Follows the standard lookup type delete pattern.
+        /// </summary>
+        /// <param name="category">The BMI category to delete</param>
+        /// <returns>Task representing the delete operation</returns>
         [RelayCommand]
         private async Task DeleteBmiCategory(BMICategoryType category)
         {
@@ -202,6 +295,11 @@ namespace Remidy.PageModels
             await AppShell.DisplayToastAsync("BMI Category deleted");
         }
 
+        /// <summary>
+        /// Adds a new BMI category to both UI and database.
+        /// Follows the standard lookup type add pattern.
+        /// </summary>
+        /// <returns>Task representing the add operation</returns>
         [RelayCommand]
         private async Task AddBmiCategory()
         {
@@ -812,6 +910,24 @@ namespace Remidy.PageModels
         }
         #endregion
 
+        /// <summary>
+        /// Resets all metadata to default seed data and navigates back to main page.
+        /// This command is used to restore the application to its initial metadata state.
+        /// </summary>
+        /// <remarks>
+        /// Reset Process:
+        /// 1. Removes seeded flag from preferences
+        /// 2. Loads fresh seed data from embedded JSON file
+        /// 3. Sets seeded flag to prevent duplicate loading
+        /// 4. Navigates to main page to refresh the application state
+        /// 
+        /// Use Cases:
+        /// - Restore corrupted metadata
+        /// - Reset to factory defaults during development
+        /// - Provide clean slate for testing purposes
+        /// 
+        /// Warning: This operation will overwrite existing metadata!
+        /// </remarks>
         [RelayCommand]
         private async Task Reset()
         {

@@ -5,8 +5,47 @@ using Remidy.Models;
 namespace Remidy.Data
 {
     /// <summary>
-    /// Repository class for managing projects in the database.
+    /// Repository class for comprehensive patient case (project) data management.
+    /// Handles all database operations for medical case records including patient demographics,
+    /// vital signs, medical classifications, examination findings, and lookup type relationships.
     /// </summary>
+    /// <remarks>
+    /// Database Schema Management:
+    /// - Creates and maintains the complete Project table schema
+    /// - Supports 80+ columns including all medical classifications
+    /// - Handles foreign key relationships to 20+ lookup types
+    /// - Manages vital signs, demographics, and examination data
+    /// 
+    /// Key Features:
+    /// - Full CRUD operations for patient case records
+    /// - Complex SQL queries with proper parameter binding
+    /// - Null-safe data reading and writing
+    /// - Support for all ILookup implementing types
+    /// - Comprehensive error handling and logging
+    /// - Database schema initialization and migration support
+    /// 
+    /// Medical Data Categories Supported:
+    /// - Patient Demographics (Name, Age, Contact details)
+    /// - Vital Signs (BP, Temperature, Pulse, Respiration, Height, Weight)
+    /// - Medical Classifications (BMI, Constitution, Nature, Look, Complexion, etc.)
+    /// - Physical Examination (Face, Hands, Eyes, Hair, Throat, etc.)
+    /// - Medical History (Present complaints, Previous treatments)
+    /// - Case Management (Categories, Registration, Dates)
+    /// 
+    /// Database Operations:
+    /// - ListAsync(): Retrieves all patient cases with full data
+    /// - GetAsync(): Fetches single case by ID with complete details
+    /// - SaveItemAsync(): Handles both INSERT and UPDATE operations
+    /// - DeleteItemAsync(): Removes case from database
+    /// - Init(): Creates database schema and tables
+    /// 
+    /// Technical Implementation:
+    /// - Uses SQLite for local data storage
+    /// - Implements Repository Pattern for data access abstraction
+    /// - Provides comprehensive parameter binding for SQL injection prevention
+    /// - Handles nullable types and DBNull conversions
+    /// - Supports both new case creation and existing case updates
+    /// </remarks>
     public class ProjectRepository
     {
         private bool _hasBeenInitialized = false;
@@ -28,8 +67,38 @@ namespace Remidy.Data
         }
 
         /// <summary>
-        /// Initializes the database connection and creates the Project table if it does not exist.
+        /// Initializes the database connection and creates the comprehensive Project table schema.
+        /// Creates a complete medical case management table with 80+ columns supporting all
+        /// patient demographics, vital signs, medical classifications, and examination findings.
         /// </summary>
+        /// <remarks>
+        /// Database Schema Created:
+        /// - Core Identity: ID (PK), Name, Description, Icon
+        /// - General Information: Registration, Date/Time, Family details, Demographics
+        /// - Vital Signs: BP, Temperature, Pulse, Respiration, Height, Weight, BMI
+        /// - Medical Classifications: 20+ foreign key columns to lookup types
+        /// - Physical Examination: Face, Hands, Eyes, Hair, Throat, Neck, Foot details
+        /// - Medical History: Present complaints, Previous treatments, Conditions
+        /// - Case Management: Categories, Notes, Status tracking
+        /// 
+        /// Foreign Key Relationships:
+        /// - BmiCategoryId → BMICategoryType
+        /// - ConstitutionTypeId → ConstitutionType
+        /// - NatureTypeId → NatureType
+        /// - [And 17+ more lookup type relationships]
+        /// 
+        /// Data Types Used:
+        /// - INTEGER: Primary keys, foreign keys, numeric vital signs
+        /// - TEXT: String fields, descriptions, notes
+        /// - REAL: Decimal vital signs (BP, Temperature, Height, Weight)
+        /// 
+        /// Table Creation Features:
+        /// - Uses CREATE TABLE IF NOT EXISTS for safety
+        /// - Proper PRIMARY KEY AUTOINCREMENT for ID column
+        /// - NOT NULL constraints on core required fields
+        /// - Flexible schema allowing NULL values for optional medical data
+        /// - Comments documenting each section for maintainability
+        /// </remarks>
         private async Task Init()
         {
             if (_hasBeenInitialized)

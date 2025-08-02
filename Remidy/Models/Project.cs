@@ -2,35 +2,113 @@ using System.Text.Json.Serialization;
 
 namespace Remidy.Models
 {
+    /// <summary>
+    /// Core data model representing a patient case record in the medical management system.
+    /// Contains comprehensive patient information including demographics, vital signs, 
+    /// medical classifications, examination findings, and treatment details.
+    /// </summary>
+    /// <remarks>
+    /// Data Categories:
+    /// - Core Identity: ID, Name, Description, Registration details
+    /// - Demographics: Age, Gender, Contact information, Family details
+    /// - Vital Signs: BP, Temperature, Pulse, Respiration, Height, Weight
+    /// - Medical Classifications: 20+ lookup type references (BMI, Constitution, etc.)
+    /// - Physical Examination: Face, Hands, Eyes, Hair, and other body systems
+    /// - Medical History: Present complaints, previous treatments, conditions
+    /// - Case Management: Categories, dates, status tracking
+    /// 
+    /// Database Design:
+    /// - Primary entity in the medical case management system
+    /// - Foreign key relationships to all lookup types via [TypeName]Id properties
+    /// - Navigation properties for complex types (marked with [JsonIgnore])
+    /// - Nullable fields to accommodate partial data entry during case development
+    /// 
+    /// Usage:
+    /// - Created and managed through ProjectDetailPageModel
+    /// - Persisted via ProjectRepository using SQLite
+    /// - Displayed in lists via ProjectListPageModel
+    /// - Supports comprehensive search and filtering capabilities
+    /// 
+    /// Architecture Notes:
+    /// - Uses int foreign keys for lookup type relationships
+    /// - Navigation properties are JsonIgnore'd to prevent serialization issues
+    /// - Designed for both new case creation and existing case modification
+    /// - Supports partial completion with nullable properties
+    /// </remarks>
     public class Project
     {
+        /// <summary>Primary key identifier for the patient case record.</summary>
         public int ID { get; set; }
+        
+        /// <summary>Patient's full name.</summary>
         public string Name { get; set; } = string.Empty;
+        
+        /// <summary>Additional description or relationship information (SO/DO/WO).</summary>
         public string Description { get; set; } = string.Empty;
+        
+        /// <summary>Icon identifier for UI display (currently unused).</summary>
         public string Icon { get; set; } = string.Empty;
 
-        // General Information
+        #region General Information
+        /// <summary>Unique registration number for the patient case.</summary>
         public string RegistrationNo { get; set; }
+        
+        /// <summary>Date of case registration or last visit.</summary>
         public DateTime Date { get; set; }
+        
+        /// <summary>Time of case registration or last visit.</summary>
         public TimeSpan Time { get; set; }
+        
+        /// <summary>Patient's mother's name for additional identification.</summary>
         public string MotherName { get; set; }
+        
+        /// <summary>Marital status (Single, Divorced, Widowed, Other).</summary>
         public string MaritalStatus { get; set; } // Could be enum: S, D, W, O
+        
+        /// <summary>Number of children (applicable for married patients).</summary>
         public int? Children { get; set; }
+        
+        /// <summary>Patient's caste information.</summary>
         public string Caste { get; set; }
+        
+        /// <summary>Patient's age in years.</summary>
         public int? Age { get; set; }
+        
+        /// <summary>Patient's religious affiliation.</summary>
         public string Religion { get; set; }
+        
+        /// <summary>Patient's occupation or profession.</summary>
         public string Occupation { get; set; }
+        
+        /// <summary>Patient's residential address.</summary>
         public string Address { get; set; }
+        
+        /// <summary>Patient's contact phone number.</summary>
         public string ContactNo { get; set; }
+        #endregion
 
-        // Vital Signs
-        public double? BP { get; set; } // Can use a separate class if systolic/diastolic needed
+        #region Vital Signs
+        /// <summary>Blood pressure measurement (could be enhanced to support systolic/diastolic separately).</summary>
+        public double? BP { get; set; }
+        
+        /// <summary>Body temperature measurement.</summary>
         public double? Temperature { get; set; }
+        
+        /// <summary>Pulse rate per minute.</summary>
         public int? Pulse { get; set; }
+        
+        /// <summary>Respiration rate per minute.</summary>
         public int? Respiration { get; set; }
-        public double? Height { get; set; } // in cm
-        public double? Weight { get; set; } // in kg
+        
+        /// <summary>Patient height in centimeters.</summary>
+        public double? Height { get; set; }
+        
+        /// <summary>Patient weight in kilograms.</summary>
+        public double? Weight { get; set; }
+        
+        /// <summary>Calculated or manually entered BMI value.</summary>
         public double? BMI { get; set; }
+        #endregion
 
         [JsonIgnore]
         public int BmiCategoryId { get; set; }
@@ -123,11 +201,21 @@ namespace Remidy.Models
         public CaseConditionType? CaseConditionType { get; set; }
 
         // Personal Habit
+        /// <summary>Foreign key reference to personal habit classification.</summary>
         [JsonIgnore]
         public int PersonalHabitTypeId { get; set; }
+        
+        /// <summary>Navigation property for personal habit classification (smoking, drinking, etc.).</summary>
         public PersonalHabitType? PersonalHabitType { get; set; }
 
+        #region Medical History & Complaints
+        /// <summary>
+        /// Patient's present complaints documented in chronological order.
+        /// Critical field containing location, sensation, modalities, amelioration, and other symptoms.
+        /// Used for case assessment, diagnosis, and treatment planning.
+        /// </summary>
         public string PresentComplaints { get; set; }
+        #endregion
 
         public string Pecular { get; set; }
 

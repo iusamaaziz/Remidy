@@ -5,6 +5,42 @@ using Remidy.Models;
 
 namespace Remidy.PageModels
 {
+    /// <summary>
+    /// ViewModel for the Project Detail Page that handles comprehensive patient case management.
+    /// Manages all aspects of a patient case including demographics, medical history, examination findings,
+    /// vital signs, medical classifications, and treatment tracking.
+    /// </summary>
+    /// <remarks>
+    /// Core Functionality:
+    /// - Patient demographic information (Name, Description, Registration details)
+    /// - Vital signs tracking (BP, Temperature, Pulse, Respiration, Height, Weight)
+    /// - Medical classifications using lookup types (BMI, Constitution, Nature, etc.)
+    /// - Physical examination findings (Face, Hands, Eyes, Hair, etc.)
+    /// - Case categorization and tagging system
+    /// - Task/treatment tracking integration
+    /// - Present complaints documentation
+    /// 
+    /// Data Flow:
+    /// 1. Load existing case data or initialize new case
+    /// 2. Populate dropdown lists from lookup repositories
+    /// 3. Bind UI controls to observable properties
+    /// 4. Handle user input and validation
+    /// 5. Save changes back to database
+    /// 
+    /// Special Features:
+    /// - String-based vital signs properties for seamless UI binding
+    /// - Automatic index management for picker controls
+    /// - Comprehensive lookup type support (20+ medical classifications)
+    /// - Error handling and user feedback
+    /// - Navigation parameter handling for new vs existing cases
+    /// 
+    /// Architecture:
+    /// - Implements IQueryAttributable for navigation parameters
+    /// - Implements IProjectTaskPageModel for task management integration
+    /// - Uses Repository Pattern for data access
+    /// - Follows MVVM pattern with observable properties
+    /// - Leverages CommunityToolkit.Mvvm for code generation
+    /// </remarks>
     public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributable, IProjectTaskPageModel
     {
         private Project? _project;
@@ -221,14 +257,49 @@ namespace Remidy.PageModels
         [ObservableProperty] private string _address;
         [ObservableProperty] private string _contactNo;
 
-        // Vital Signs
+        #region Vital Signs
+        /// <summary>
+        /// Blood Pressure measurement as string for seamless UI binding.
+        /// Converted from/to nullable double in Project model during load/save operations.
+        /// </summary>
         [ObservableProperty] private string _bp = string.Empty;
+        
+        /// <summary>
+        /// Body temperature measurement as string for seamless UI binding.
+        /// Converted from/to nullable double in Project model during load/save operations.
+        /// </summary>
         [ObservableProperty] private string _temperature = string.Empty;
+        
+        /// <summary>
+        /// Pulse rate measurement as string for seamless UI binding.
+        /// Converted from/to nullable int in Project model during load/save operations.
+        /// </summary>
         [ObservableProperty] private string _pulse = string.Empty;
+        
+        /// <summary>
+        /// Respiration rate measurement as string for seamless UI binding.
+        /// Converted from/to nullable int in Project model during load/save operations.
+        /// </summary>
         [ObservableProperty] private string _respiration = string.Empty;
+        
+        /// <summary>
+        /// Patient height measurement as string for seamless UI binding.
+        /// Converted from/to nullable double in Project model during load/save operations.
+        /// </summary>
         [ObservableProperty] private string _height = string.Empty;
+        
+        /// <summary>
+        /// Patient weight measurement as string for seamless UI binding.
+        /// Converted from/to nullable double in Project model during load/save operations.
+        /// </summary>
         [ObservableProperty] private string _weight = string.Empty;
+        #endregion
 
+        /// <summary>
+        /// Patient's present complaints documented in chronological order.
+        /// Includes location, sensation, modalities, amelioration, and other relevant symptoms.
+        /// Critical field for case assessment and treatment planning.
+        /// </summary>
         [ObservableProperty] private string _presentComplaints = string.Empty;
 
         [ObservableProperty] private string _pecular;

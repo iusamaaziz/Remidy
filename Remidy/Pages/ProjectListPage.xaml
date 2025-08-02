@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+    ProjectListPage.xaml
+    
+    Purpose: Main case records listing page with search functionality
+    
+    Features:
+    - Displays all patient case records in a scrollable list
+    - Real-time search by Registration Number and Patient Name
+    - Navigation to individual case details
+    - Add new case button overlay
+    - Responsive design with proper theming
+    
+    UI Components:
+    - SearchBar: Real-time filtering of case records
+    - VerticalStackLayout: Dynamic list of case cards
+    - Border Cards: Individual case record display
+    - AddButton: Floating action button for new cases
+    
+    Data Binding:
+    - SearchText: Two-way binding for search input
+    - FilteredProjects: One-way binding for displaying filtered results
+    - Navigation commands for case selection and adding new cases
+-->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pageModels="clr-namespace:Remidy.PageModels"
@@ -10,18 +33,21 @@
              Title="Case Records">
 
 
+    <!-- Page Lifecycle: Load data when page appears -->
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
                 EventName="Appearing"                
                 Command="{Binding AppearingCommand}" />
     </ContentPage.Behaviors>
+    
+    <!-- Main Layout: Search Bar + Scrollable Content -->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>  <!-- Search Bar -->
+            <RowDefinition Height="*"/>     <!-- Content Area -->
         </Grid.RowDefinitions>
         
-        <!-- Search Bar -->
+        <!-- Search Bar: Real-time filtering of case records -->
         <SearchBar Grid.Row="0"
                    Text="{Binding SearchText}"
                    Placeholder="Search by Registration # or Name..."
@@ -31,36 +57,46 @@
                    PlaceholderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}"
                    CancelButtonColor="{StaticResource Primary}" />
       
+      <!-- Scrollable Content Area: Displays filtered case records -->
       <ScrollView Grid.Row="1">
+        <!-- Dynamic List: Binds to filtered projects collection -->
         <VerticalStackLayout 
             BindableLayout.ItemsSource="{Binding FilteredProjects}" 
             Margin="{StaticResource LayoutPadding}" 
             Spacing="{StaticResource LayoutSpacing}">
             <BindableLayout.ItemTemplate>
+                <!-- Case Record Card Template -->
                 <DataTemplate x:DataType="models:Project">
                     <Border>
+                        <!-- Case Information Layout -->
                         <Grid Padding="10">
                             <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>  <!-- Registration Number -->
+                                    <RowDefinition Height="Auto"/>  <!-- Patient Name & Relationship -->
+                                    <RowDefinition Height="Auto"/>  <!-- Reserved Row -->
+                                    <RowDefinition Height="Auto"/>  <!-- Last Visit Date -->
                                 </Grid.RowDefinitions>
 
+                                <!-- Registration Number Display -->
                                 <HorizontalStackLayout Spacing="6">
                                     <Label Text="Registration #" FontSize="16" />
                                     <Label Text="{Binding RegistrationNo}" FontSize="16" FontAttributes="Bold"/>
                                 </HorizontalStackLayout>
+                                
+                                <!-- Patient Name and Relationship -->
                                 <HorizontalStackLayout Grid.Row="1" Spacing="5">
                                     <Label Text="{Binding Name}" FontSize="24" />
                                     <Label Text="SO/DO/WO" FontSize="10" VerticalOptions="Center" VerticalTextAlignment="Center"/>
                                     <Label Text="{Binding Description}" FontSize="20"/>
                                 </HorizontalStackLayout>
+                                
+                                <!-- Last Visit Information -->
                                 <HorizontalStackLayout Grid.Row="3" Spacing="5">
                                     <Label Text="Last Visit:" FontSize="16" />
                                     <Label Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}" FontSize="16"/>
                                 </HorizontalStackLayout>
                             </Grid>
+                        <!-- Tap Navigation: Opens case details when tapped -->
                         <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NavigateToProjectCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectListPageModel}}, x:DataType=pageModels:ProjectListPageModel}" CommandParameter="{Binding .}"/>
                         </Border.GestureRecognizers>
@@ -70,6 +106,7 @@
         </VerticalStackLayout>
       </ScrollView>
 
+        <!-- Floating Add Button: Create new case record -->
         <controls:AddButton 
             Grid.Row="1"
             Command="{Binding AddProjectCommand}" />
