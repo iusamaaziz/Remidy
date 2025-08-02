@@ -1,0 +1,1822 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remidy</name>
+    </assembly>
+    <members>
+        <member name="T:Remidy.Data.CategoryRepository">
+            <summary>
+            Repository class for managing categories in the database.
+            </summary>
+        </member>
+        <member name="M:Remidy.Data.CategoryRepository.#ctor(Microsoft.Extensions.Logging.ILogger{Remidy.Data.CategoryRepository})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Remidy.Data.CategoryRepository"/> class.
+            </summary>
+            <param name="logger">The logger instance.</param>
+        </member>
+        <member name="M:Remidy.Data.CategoryRepository.Init">
+            <summary>
+            Initializes the database connection and creates the Category table if it does not exist.
+            </summary>
+        </member>
+        <member name="M:Remidy.Data.CategoryRepository.ListAsync">
+            <summary>
+            Retrieves a list of all categories from the database.
+            </summary>
+            <returns>A list of <see cref="T:Remidy.Models.Category"/> objects.</returns>
+        </member>
+        <member name="M:Remidy.Data.CategoryRepository.GetAsync(System.Int32)">
+            <summary>
+            Retrieves a specific category by its ID.
+            </summary>
+            <param name="id">The ID of the category.</param>
+            <returns>A <see cref="T:Remidy.Models.Category"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:Remidy.Data.CategoryRepository.SaveItemAsync(Remidy.Models.Category)">
+            <summary>
+            Saves a category to the database. If the category ID is 0, a new category is created; otherwise, the existing category is updated.
+            </summary>
+            <param name="item">The category to save.</param>
+            <returns>The ID of the saved category.</returns>
+        </member>
+        <member name="M:Remidy.Data.CategoryRepository.DeleteItemAsync(Remidy.Models.Category)">
+            <summary>
+            Deletes a category from the database.
+            </summary>
+            <param name="item">The category to delete.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Remidy.Data.CategoryRepository.DropTableAsync">
+            <summary>
+            Drops the Category table from the database.
+            </summary>
+        </member>
+        <member name="T:Remidy.Data.ProjectRepository">
+            <summary>
+            Repository class for managing projects in the database.
+            </summary>
+        </member>
+        <member name="M:Remidy.Data.ProjectRepository.#ctor(Remidy.Data.TaskRepository,Remidy.Data.TagRepository,Microsoft.Extensions.Logging.ILogger{Remidy.Data.ProjectRepository})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Remidy.Data.ProjectRepository"/> class.
+            </summary>
+            <param name="taskRepository">The task repository instance.</param>
+            <param name="tagRepository">The tag repository instance.</param>
+            <param name="logger">The logger instance.</param>
+        </member>
+        <member name="M:Remidy.Data.ProjectRepository.Init">
+            <summary>
+            Initializes the database connection and creates the Project table if it does not exist.
+            </summary>
+        </member>
+        <member name="M:Remidy.Data.ProjectRepository.ListAsync">
+            <summary>
+            Retrieves a list of all projects from the database.
+            </summary>
+            <returns>A list of <see cref="T:Remidy.Models.Project"/> objects.</returns>
+        </member>
+        <member name="M:Remidy.Data.ProjectRepository.GetAsync(System.Int32)">
+            <summary>
+            Retrieves a specific project by its ID.
+            </summary>
+            <param name="id">The ID of the project.</param>
+            <returns>A <see cref="T:Remidy.Models.Project"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:Remidy.Data.ProjectRepository.SaveItemAsync(Remidy.Models.Project)">
+            <summary>
+            Saves a project to the database. If the project ID is 0, a new project is created; otherwise, the existing project is updated.
+            </summary>
+            <param name="item">The project to save.</param>
+            <returns>The ID of the saved project.</returns>
+        </member>
+        <member name="M:Remidy.Data.ProjectRepository.DeleteItemAsync(Remidy.Models.Project)">
+            <summary>
+            Deletes a project from the database.
+            </summary>
+            <param name="item">The project to delete.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Remidy.Data.ProjectRepository.DropTableAsync">
+            <summary>
+            Drops the Project table from the database.
+            </summary>
+        </member>
+        <member name="T:Remidy.Data.TagRepository">
+            <summary>
+            Repository class for managing tags in the database.
+            </summary>
+        </member>
+        <member name="M:Remidy.Data.TagRepository.#ctor(Microsoft.Extensions.Logging.ILogger{Remidy.Data.TagRepository})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Remidy.Data.TagRepository"/> class.
+            </summary>
+            <param name="logger">The logger instance.</param>
+        </member>
+        <member name="M:Remidy.Data.TagRepository.Init">
+            <summary>
+            Initializes the database connection and creates the Tag and ProjectsTags tables if they do not exist.
+            </summary>
+        </member>
+        <member name="M:Remidy.Data.TagRepository.ListAsync">
+            <summary>
+            Retrieves a list of all tags from the database.
+            </summary>
+            <returns>A list of <see cref="T:Remidy.Models.Tag"/> objects.</returns>
+        </member>
+        <member name="M:Remidy.Data.TagRepository.ListAsync(System.Int32)">
+            <summary>
+            Retrieves a list of tags associated with a specific project.
+            </summary>
+            <param name="projectID">The ID of the project.</param>
+            <returns>A list of <see cref="T:Remidy.Models.Tag"/> objects.</returns>
+        </member>
+        <member name="M:Remidy.Data.TagRepository.GetAsync(System.Int32)">
+            <summary>
+            Retrieves a specific tag by its ID.
+            </summary>
+            <param name="id">The ID of the tag.</param>
+            <returns>A <see cref="T:Remidy.Models.Tag"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:Remidy.Data.TagRepository.SaveItemAsync(Remidy.Models.Tag)">
+            <summary>
+            Saves a tag to the database. If the tag ID is 0, a new tag is created; otherwise, the existing tag is updated.
+            </summary>
+            <param name="item">The tag to save.</param>
+            <returns>The ID of the saved tag.</returns>
+        </member>
+        <member name="M:Remidy.Data.TagRepository.SaveItemAsync(Remidy.Models.Tag,System.Int32)">
+            <summary>
+            Saves a tag to the database and associates it with a specific project.
+            </summary>
+            <param name="item">The tag to save.</param>
+            <param name="projectID">The ID of the project.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Remidy.Data.TagRepository.DeleteItemAsync(Remidy.Models.Tag)">
+            <summary>
+            Deletes a tag from the database.
+            </summary>
+            <param name="item">The tag to delete.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Remidy.Data.TagRepository.DeleteItemAsync(Remidy.Models.Tag,System.Int32)">
+            <summary>
+            Deletes a tag from a specific project in the database.
+            </summary>
+            <param name="item">The tag to delete.</param>
+            <param name="projectID">The ID of the project.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Remidy.Data.TagRepository.DropTableAsync">
+            <summary>
+            Drops the Tag and ProjectsTags tables from the database.
+            </summary>
+        </member>
+        <member name="T:Remidy.Data.TaskRepository">
+            <summary>
+            Repository class for managing tasks in the database.
+            </summary>
+        </member>
+        <member name="M:Remidy.Data.TaskRepository.#ctor(Microsoft.Extensions.Logging.ILogger{Remidy.Data.TaskRepository})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Remidy.Data.TaskRepository"/> class.
+            </summary>
+            <param name="logger">The logger instance.</param>
+        </member>
+        <member name="M:Remidy.Data.TaskRepository.Init">
+            <summary>
+            Initializes the database connection and creates the Task table if it does not exist.
+            </summary>
+        </member>
+        <member name="M:Remidy.Data.TaskRepository.ListAsync">
+            <summary>
+            Retrieves a list of all tasks from the database.
+            </summary>
+            <returns>A list of <see cref="T:Remidy.Models.ProjectTask"/> objects.</returns>
+        </member>
+        <member name="M:Remidy.Data.TaskRepository.ListAsync(System.Int32)">
+            <summary>
+            Retrieves a list of tasks associated with a specific project.
+            </summary>
+            <param name="projectId">The ID of the project.</param>
+            <returns>A list of <see cref="T:Remidy.Models.ProjectTask"/> objects.</returns>
+        </member>
+        <member name="M:Remidy.Data.TaskRepository.GetAsync(System.Int32)">
+            <summary>
+            Retrieves a specific task by its ID.
+            </summary>
+            <param name="id">The ID of the task.</param>
+            <returns>A <see cref="T:Remidy.Models.ProjectTask"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:Remidy.Data.TaskRepository.SaveItemAsync(Remidy.Models.ProjectTask)">
+            <summary>
+            Saves a task to the database. If the task ID is 0, a new task is created; otherwise, the existing task is updated.
+            </summary>
+            <param name="item">The task to save.</param>
+            <returns>The ID of the saved task.</returns>
+        </member>
+        <member name="M:Remidy.Data.TaskRepository.DeleteItemAsync(Remidy.Models.ProjectTask)">
+            <summary>
+            Deletes a task from the database.
+            </summary>
+            <param name="item">The task to delete.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Remidy.Data.TaskRepository.DropTableAsync">
+            <summary>
+            Drops the Task table from the database.
+            </summary>
+        </member>
+        <member name="T:Remidy.PageModels.MainPageModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.TodoCategoryData">
+            <inheritdoc cref="F:Remidy.PageModels.MainPageModel._todoCategoryData"/>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.TodoCategoryColors">
+            <inheritdoc cref="F:Remidy.PageModels.MainPageModel._todoCategoryColors"/>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.Tasks">
+            <inheritdoc cref="F:Remidy.PageModels.MainPageModel._tasks"/>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.Projects">
+            <inheritdoc cref="F:Remidy.PageModels.MainPageModel._projects"/>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.IsBusy">
+            <inheritdoc cref="F:Remidy.PageModels.MainPageModel._isBusy"/>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.IsRefreshing">
+            <inheritdoc cref="F:Remidy.PageModels.MainPageModel._isRefreshing"/>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.Today">
+            <inheritdoc cref="F:Remidy.PageModels.MainPageModel._today"/>
+        </member>
+        <member name="F:Remidy.PageModels.MainPageModel.refreshCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.MainPageModel.RefreshCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.RefreshCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.MainPageModel.Refresh"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.MainPageModel.navigatedToCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.MainPageModel.NavigatedToCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.NavigatedToCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.MainPageModel.NavigatedTo"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.MainPageModel.navigatedFromCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.MainPageModel.NavigatedFromCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.NavigatedFromCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.MainPageModel.NavigatedFrom"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.MainPageModel.appearingCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.MainPageModel.AppearingCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.AppearingCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.MainPageModel.Appearing"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.MainPageModel.taskCompletedCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.MainPageModel.TaskCompletedCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.TaskCompletedCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.MainPageModel.TaskCompleted(Remidy.Models.ProjectTask)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.MainPageModel.addTaskCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.MainPageModel.AddTaskCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.AddTaskCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.MainPageModel.AddTask"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.MainPageModel.navigateToProjectCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.MainPageModel.NavigateToProjectCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.NavigateToProjectCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.MainPageModel.NavigateToProject(Remidy.Models.Project)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.MainPageModel.navigateToTaskCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.MainPageModel.NavigateToTaskCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.NavigateToTaskCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.MainPageModel.NavigateToTask(Remidy.Models.ProjectTask)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.MainPageModel.cleanTasksCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.MainPageModel.CleanTasksCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.MainPageModel.CleanTasksCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.MainPageModel.CleanTasks"/>.</summary>
+        </member>
+        <member name="T:Remidy.PageModels.ManageMetaPageModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.Categories">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._categories"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.BmiCategories">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._bmiCategories"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.ConstitutionTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._constitutionTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.NatureTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._natureTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.LookTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._lookTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.ComplexionTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._complexionTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.TemperamentTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._temperamentTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.HandTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._handTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.FaceTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._faceTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.NailTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._nailTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SpeakingTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._speakingTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.TongueTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._tongueTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.HairTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._hairTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.EyeTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._eyeTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.Tags">
+            <inheritdoc cref="F:Remidy.PageModels.ManageMetaPageModel._tags"/>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.appearingCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AppearingCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AppearingCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.Appearing"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveCategoriesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveCategoriesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveCategoriesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveCategories"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteCategoryCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteCategoryCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteCategoryCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteCategory(Remidy.Models.Category)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addCategoryCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddCategoryCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddCategoryCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddCategory"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveBMICategoriesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveBMICategoriesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveBMICategoriesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveBMICategories"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteBmiCategoryCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteBmiCategoryCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteBmiCategoryCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteBmiCategory(Remidy.Models.BMICategoryType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addBmiCategoryCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddBmiCategoryCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddBmiCategoryCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddBmiCategory"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveConstitutionTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveConstitutionTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveConstitutionTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveConstitutionTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteConstitutionTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteConstitutionTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteConstitutionTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteConstitutionType(Remidy.Models.ConstitutionType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addConstitutionTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddConstitutionTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddConstitutionTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddConstitutionType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveNatureTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveNatureTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveNatureTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveNatureTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteNatureTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteNatureTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteNatureTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteNatureType(Remidy.Models.NatureType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addNatureTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddNatureTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddNatureTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddNatureType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveComplexionTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveComplexionTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveComplexionTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveComplexionTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteComplexionTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteComplexionTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteComplexionTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteComplexionType(Remidy.Models.ComplexionType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addComplexionTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddComplexionTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddComplexionTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddComplexionType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveLookTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveLookTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveLookTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveLookTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteLookTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteLookTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteLookTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteLookType(Remidy.Models.LookType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addLookTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddLookTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddLookTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddLookType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveTemperamentTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveTemperamentTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveTemperamentTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveTemperamentTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteTemperamentTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteTemperamentTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteTemperamentTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteTemperamentType(Remidy.Models.TemperamentType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addTemperamentTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddTemperamentTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddTemperamentTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddTemperamentType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveHandTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveHandTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveHandTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveHandTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteHandTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteHandTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteHandTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteHandType(Remidy.Models.HandType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addHandTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddHandTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddHandTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddHandType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveFaceTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveFaceTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveFaceTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveFaceTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteFaceTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteFaceTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteFaceTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteFaceType(Remidy.Models.FaceType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addFaceTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddFaceTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddFaceTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddFaceType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveNailTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveNailTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveNailTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveNailTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteNailTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteNailTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteNailTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteNailType(Remidy.Models.NailType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addNailTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddNailTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddNailTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddNailType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveSpeakingTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveSpeakingTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveSpeakingTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveSpeakingTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteSpeakingTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteSpeakingTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteSpeakingTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteSpeakingType(Remidy.Models.SpeakingType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addSpeakingTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddSpeakingTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddSpeakingTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddSpeakingType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveTongueTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveTongueTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveTongueTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveTongueTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteTongueTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteTongueTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteTongueTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteTongueType(Remidy.Models.TongueType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addTongueTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddTongueTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddTongueTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddTongueType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveHairTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveHairTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveHairTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveHairTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteHairTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteHairTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteHairTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteHairType(Remidy.Models.HairType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addHairTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddHairTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddHairTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddHairType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveEyeTypesCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveEyeTypesCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveEyeTypesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveEyeTypes"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteEyeTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteEyeTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteEyeTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteEyeType(Remidy.Models.EyeType)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addEyeTypeCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddEyeTypeCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddEyeTypeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddEyeType"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.saveTagsCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.SaveTagsCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.SaveTagsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.SaveTags"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.deleteTagCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.DeleteTagCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.DeleteTagCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.DeleteTag(Remidy.Models.Tag)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.addTagCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.AddTagCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.AddTagCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.AddTag"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ManageMetaPageModel.resetCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ManageMetaPageModel.ResetCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ManageMetaPageModel.ResetCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ManageMetaPageModel.Reset"/>.</summary>
+        </member>
+        <member name="T:Remidy.PageModels.ProjectDetailPageModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Name">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._name"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Description">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._description"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Tasks">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._tasks"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Categories">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._categories"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Category">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._category"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.CategoryIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._categoryIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.BmiCategories">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._bmiCategories"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.BmiCategory">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._bmiCategory"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.BmiCategoryIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._bmiCategoryIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.ConstitutionTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._constitutionTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.ConstitutionType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._constitutionType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.ConstitutionTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._constitutionTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.NatureTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._natureTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.NatureType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._natureType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.NatureTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._natureTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.LookTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._lookTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.LookType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._lookType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.LookTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._lookTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.ComplexionTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._complexionTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.ComplexionType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._complexionType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.ComplexionTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._complexionTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.TemperamentTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._temperamentTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.TemperamentType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._temperamentType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.TemperamentTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._temperamentTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.HandTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._handTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.HandType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._handType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.HandTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._handTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.FaceTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._faceTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.FaceType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._faceType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.FaceTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._faceTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.NailTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._nailTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.NailType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._nailType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.NailTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._nailTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.SpeakingTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._speakingTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.SpeakingType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._speakingType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.SpeakingTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._speakingTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.TongueTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._tongueTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.TongueType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._tongueType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.TongueTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._tongueTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.HairTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._hairTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.HairType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._hairType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.HairTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._hairTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.EyeTypes">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._eyeTypes"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.EyeType">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._eyeType"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.EyeTypeIndex">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._eyeTypeIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.AllTags">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._allTags"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Icon">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._icon"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.IsBusy">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._isBusy"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.RegistrationNo">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._registrationNo"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Date">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._date"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Time">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._time"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.MotherName">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._motherName"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.MaritalStatus">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._maritalStatus"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Children">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._children"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Caste">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._caste"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Age">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._age"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Religion">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._religion"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Occupation">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._occupation"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Address">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._address"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.ContactNo">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._contactNo"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Bp">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._bp"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Temperature">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._temperature"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Pulse">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._pulse"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Respiration">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._respiration"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Height">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._height"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Weight">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._weight"/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.Icons">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectDetailPageModel._icons"/>
+        </member>
+        <member name="F:Remidy.PageModels.ProjectDetailPageModel.taskCompletedCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ProjectDetailPageModel.TaskCompletedCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.TaskCompletedCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ProjectDetailPageModel.TaskCompleted(Remidy.Models.ProjectTask)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ProjectDetailPageModel.saveCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ProjectDetailPageModel.SaveCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.SaveCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ProjectDetailPageModel.Save"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ProjectDetailPageModel.addTaskCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ProjectDetailPageModel.AddTaskCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.AddTaskCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ProjectDetailPageModel.AddTask"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ProjectDetailPageModel.deleteCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ProjectDetailPageModel.DeleteCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.DeleteCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ProjectDetailPageModel.Delete"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ProjectDetailPageModel.navigateToTaskCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ProjectDetailPageModel.NavigateToTaskCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.NavigateToTaskCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ProjectDetailPageModel.NavigateToTask(Remidy.Models.ProjectTask)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ProjectDetailPageModel.toggleTagCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ProjectDetailPageModel.ToggleTagCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.ToggleTagCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ProjectDetailPageModel.ToggleTag(Remidy.Models.Tag)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ProjectDetailPageModel.cleanTasksCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ProjectDetailPageModel.CleanTasksCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectDetailPageModel.CleanTasksCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ProjectDetailPageModel.CleanTasks"/>.</summary>
+        </member>
+        <member name="T:Remidy.PageModels.ProjectListPageModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectListPageModel.Projects">
+            <inheritdoc cref="F:Remidy.PageModels.ProjectListPageModel._projects"/>
+        </member>
+        <member name="F:Remidy.PageModels.ProjectListPageModel.appearingCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ProjectListPageModel.AppearingCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectListPageModel.AppearingCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ProjectListPageModel.Appearing"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ProjectListPageModel.navigateToProjectCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ProjectListPageModel.NavigateToProjectCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectListPageModel.NavigateToProjectCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Remidy.PageModels.ProjectListPageModel.NavigateToProject(Remidy.Models.Project)"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.ProjectListPageModel.addProjectCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.ProjectListPageModel.AddProjectCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.ProjectListPageModel.AddProjectCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.ProjectListPageModel.AddProject"/>.</summary>
+        </member>
+        <member name="T:Remidy.PageModels.TaskDetailPageModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:Remidy.PageModels.TaskDetailPageModel.Title">
+            <inheritdoc cref="F:Remidy.PageModels.TaskDetailPageModel._title"/>
+        </member>
+        <member name="P:Remidy.PageModels.TaskDetailPageModel.IsCompleted">
+            <inheritdoc cref="F:Remidy.PageModels.TaskDetailPageModel._isCompleted"/>
+        </member>
+        <member name="P:Remidy.PageModels.TaskDetailPageModel.Projects">
+            <inheritdoc cref="F:Remidy.PageModels.TaskDetailPageModel._projects"/>
+        </member>
+        <member name="P:Remidy.PageModels.TaskDetailPageModel.Project">
+            <inheritdoc cref="F:Remidy.PageModels.TaskDetailPageModel._project"/>
+        </member>
+        <member name="P:Remidy.PageModels.TaskDetailPageModel.SelectedProjectIndex">
+            <inheritdoc cref="F:Remidy.PageModels.TaskDetailPageModel._selectedProjectIndex"/>
+        </member>
+        <member name="P:Remidy.PageModels.TaskDetailPageModel.IsExistingProject">
+            <inheritdoc cref="F:Remidy.PageModels.TaskDetailPageModel._isExistingProject"/>
+        </member>
+        <member name="F:Remidy.PageModels.TaskDetailPageModel.saveCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.TaskDetailPageModel.SaveCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.TaskDetailPageModel.SaveCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.TaskDetailPageModel.Save"/>.</summary>
+        </member>
+        <member name="F:Remidy.PageModels.TaskDetailPageModel.deleteCommand">
+            <summary>The backing field for <see cref="P:Remidy.PageModels.TaskDetailPageModel.DeleteCommand"/>.</summary>
+        </member>
+        <member name="P:Remidy.PageModels.TaskDetailPageModel.DeleteCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Remidy.PageModels.TaskDetailPageModel.Delete"/>.</summary>
+        </member>
+        <member name="T:Remidy.Services.IErrorHandler">
+            <summary>
+            Error Handler Service.
+            </summary>
+        </member>
+        <member name="M:Remidy.Services.IErrorHandler.HandleError(System.Exception)">
+            <summary>
+            Handle error in UI.
+            </summary>
+            <param name="ex">Exception being thrown.</param>
+        </member>
+        <member name="T:Remidy.Services.ModalErrorHandler">
+            <summary>
+            Modal Error Handler.
+            </summary>
+        </member>
+        <member name="M:Remidy.Services.ModalErrorHandler.HandleError(System.Exception)">
+            <summary>
+            Handle error in UI.
+            </summary>
+            <param name="ex">Exception.</param>
+        </member>
+        <member name="T:Remidy.Utilities.ProjectExtentions">
+            <summary>
+            Project Model Extentions
+            </summary>
+        </member>
+        <member name="M:Remidy.Utilities.ProjectExtentions.IsNullOrNew(Remidy.Models.Project)">
+            <summary>
+            Check if the project is null or new.
+            </summary>
+            <param name="project"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Remidy.Utilities.TaskUtilities">
+            <summary>
+            Task Utilities.
+            </summary>
+        </member>
+        <member name="M:Remidy.Utilities.TaskUtilities.FireAndForgetSafeAsync(System.Threading.Tasks.Task,Remidy.Services.IErrorHandler)">
+            <summary>
+            Fire and Forget Safe Async.
+            </summary>
+            <param name="task">Task to Fire and Forget.</param>
+            <param name="handler">Error Handler.</param>
+        </member>
+        <member name="T:Remidy.Resource">
+            <summary>
+            Android Resource Designer class.
+            Exposes the Android Resource designer assembly into the project Namespace.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Boolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Double">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.NullableDouble">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.BMICategoryType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Category">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ComplexionType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ConstitutionType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.EyeType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.FaceType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.HairType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.LookType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.NailType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.NatureType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Project">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ProjectsJson">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ProjectTask">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.SpeakingType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Tag">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.TemperamentType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.TongueType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ListProject">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ListProjectTask">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ListTag">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.DateTime">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.TimeSpan">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.NullableInt32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:JsonContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:JsonContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:JsonContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:JsonContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Button.TextColorTo(Microsoft.Maui.Controls.Button,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_DatePicker.TextColorTo(Microsoft.Maui.Controls.DatePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Editor.TextColorTo(Microsoft.Maui.Controls.Editor,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Entry.TextColorTo(Microsoft.Maui.Controls.Entry,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_InputView.TextColorTo(Microsoft.Maui.Controls.InputView,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Label.TextColorTo(Microsoft.Maui.Controls.Label,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Picker.TextColorTo(Microsoft.Maui.Controls.Picker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_RadioButton.TextColorTo(Microsoft.Maui.Controls.RadioButton,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_SearchBar.TextColorTo(Microsoft.Maui.Controls.SearchBar,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_TimePicker.TextColorTo(Microsoft.Maui.Controls.TimePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TodoCategoryData">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TodoCategoryData" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TodoCategoryColors">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TodoCategoryColors" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Tasks">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Tasks" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Projects">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Projects" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsBusy">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsBusy" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsRefreshing">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsRefreshing" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Today">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Today" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Categories">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Categories" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.BmiCategories">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "BmiCategories" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ConstitutionTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ConstitutionTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.NatureTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "NatureTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.LookTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "LookTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ComplexionTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ComplexionTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TemperamentTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TemperamentTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.HandTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "HandTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FaceTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FaceTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.NailTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "NailTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SpeakingTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SpeakingTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TongueTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TongueTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.HairTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "HairTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.EyeTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "EyeTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Tags">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Tags" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Name">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Name" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Description">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Description" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Category">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Category" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CategoryIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CategoryIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.BmiCategory">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "BmiCategory" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.BmiCategoryIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "BmiCategoryIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ConstitutionType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ConstitutionType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ConstitutionTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ConstitutionTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.NatureType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "NatureType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.NatureTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "NatureTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.LookType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "LookType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.LookTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "LookTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ComplexionType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ComplexionType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ComplexionTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ComplexionTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TemperamentType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TemperamentType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TemperamentTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TemperamentTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.HandType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "HandType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.HandTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "HandTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FaceType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FaceType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FaceTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FaceTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.NailType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "NailType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.NailTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "NailTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SpeakingType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SpeakingType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SpeakingTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SpeakingTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TongueType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TongueType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TongueTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TongueTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.HairType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "HairType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.HairTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "HairTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.EyeType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "EyeType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.EyeTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "EyeTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.AllTags">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "AllTags" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Icon">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Icon" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.RegistrationNo">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "RegistrationNo" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Date">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Date" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Time">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Time" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.MotherName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "MotherName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.MaritalStatus">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "MaritalStatus" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Children">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Children" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Caste">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Caste" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Age">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Age" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Religion">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Religion" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Occupation">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Occupation" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Address">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Address" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ContactNo">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ContactNo" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Bp">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Bp" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Temperature">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Temperature" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Pulse">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Pulse" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Respiration">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Respiration" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Height">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Height" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Weight">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Weight" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Icons">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Icons" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Title">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Title" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsCompleted">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsCompleted" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Project">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Project" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedProjectIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedProjectIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsExistingProject">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsExistingProject" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TodoCategoryData">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TodoCategoryData" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TodoCategoryColors">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TodoCategoryColors" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Tasks">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Tasks" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Projects">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Projects" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsBusy">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsBusy" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsRefreshing">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsRefreshing" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Today">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Today" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Categories">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Categories" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.BmiCategories">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "BmiCategories" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ConstitutionTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ConstitutionTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.NatureTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "NatureTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.LookTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "LookTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ComplexionTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ComplexionTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TemperamentTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TemperamentTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.HandTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "HandTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FaceTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FaceTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.NailTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "NailTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SpeakingTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SpeakingTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TongueTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TongueTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.HairTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "HairTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.EyeTypes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "EyeTypes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Tags">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Tags" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Name">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Name" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Description">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Description" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Category">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Category" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CategoryIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CategoryIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.BmiCategory">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "BmiCategory" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.BmiCategoryIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "BmiCategoryIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ConstitutionType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ConstitutionType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ConstitutionTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ConstitutionTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.NatureType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "NatureType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.NatureTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "NatureTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.LookType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "LookType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.LookTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "LookTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ComplexionType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ComplexionType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ComplexionTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ComplexionTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TemperamentType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TemperamentType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TemperamentTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TemperamentTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.HandType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "HandType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.HandTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "HandTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FaceType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FaceType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FaceTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FaceTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.NailType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "NailType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.NailTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "NailTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SpeakingType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SpeakingType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SpeakingTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SpeakingTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TongueType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TongueType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TongueTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TongueTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.HairType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "HairType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.HairTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "HairTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.EyeType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "EyeType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.EyeTypeIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "EyeTypeIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.AllTags">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "AllTags" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Icon">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Icon" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.RegistrationNo">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "RegistrationNo" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Date">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Date" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Time">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Time" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.MotherName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "MotherName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.MaritalStatus">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "MaritalStatus" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Children">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Children" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Caste">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Caste" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Age">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Age" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Religion">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Religion" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Occupation">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Occupation" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Address">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Address" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ContactNo">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ContactNo" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Bp">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Bp" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Temperature">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Temperature" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Pulse">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Pulse" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Respiration">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Respiration" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Height">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Height" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Weight">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Weight" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Icons">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Icons" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Title">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Title" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsCompleted">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsCompleted" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Project">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Project" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedProjectIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedProjectIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsExistingProject">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsExistingProject" generated properties.</summary>
+        </member>
+    </members>
+</doc>

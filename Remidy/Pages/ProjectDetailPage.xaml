@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pageModels="clr-namespace:Remidy.PageModels"
+             xmlns:models="clr-namespace:Remidy.Models"
+             xmlns:pages="clr-namespace:Remidy.Pages"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:controls="clr-namespace:Remidy.Pages.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:fonts="clr-namespace:Fonts"
+             x:Class="Remidy.Pages.ProjectDetailPage"
+             x:DataType="pageModels:ProjectDetailPageModel"
+             Title="Case">
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="NormalTagTemplate" x:DataType="models:Tag">
+                <Border StrokeShape="RoundRectangle 22" 
+                        HeightRequest="44" 
+                        StrokeThickness="0"
+                        Background="{AppThemeBinding Light={StaticResource LightSecondaryBackground},Dark={StaticResource DarkSecondaryBackground}}" 
+                        Padding="{OnPlatform '18,0,18,8',Android='18,0,18,0'}"
+                        SemanticProperties.Description="{Binding Title}">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}" CommandParameter="{Binding .}"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="{Binding Title}"
+                            TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"
+                            FontSize="{OnIdiom 16,Desktop=18}" 
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center"/>
+                </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SelectedTagTemplate" x:DataType="models:Tag">
+            <Border StrokeShape="RoundRectangle 22" 
+                        HeightRequest="44" 
+                        StrokeThickness="0"
+                        Background="{Binding DisplayColor}" 
+                        Padding="{OnPlatform '18,0,18,8',Android='18,0,18,0'}"
+                        SemanticProperties.Description="{Binding Title}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}" CommandParameter="{Binding .}"/>
+                </Border.GestureRecognizers>
+                <Label Text="{Binding Title}"
+                    TextColor="{AppThemeBinding Light={StaticResource LightBackground},Dark={StaticResource DarkBackground}}" 
+                    FontSize="{OnIdiom 16,Desktop=18}" 
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"/>
+            </Border>
+        </DataTemplate>
+
+        <controls:ChipDataTemplateSelector 
+            x:Key="ChipDataTemplateSelector"
+            NormalTagTemplate="{StaticResource NormalTagTemplate}"
+            SelectedTagTemplate="{StaticResource SelectedTagTemplate}"/>
+
+        <Style TargetType="Entry">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DarkOnLightBackground}, Dark={StaticResource LightOnDarkBackground}}" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="FontFamily" Value="OpenSansRegular"/>
+            <Setter Property="FontSize" Value="{OnIdiom 16,Desktop=24}" />
+            <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
+            <Setter Property="MinimumHeightRequest" Value="44"/>
+            <Setter Property="MinimumWidthRequest" Value="44"/>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Delete"
+            Command="{Binding DeleteCommand}"
+            Order="Primary"
+            Priority="0"
+            IconImageSource="{StaticResource IconDelete}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Padding="{StaticResource LayoutPadding}" Spacing="{StaticResource LayoutSpacing}">
+                <sf:SfTextInputLayout Hint="Registration Number">
+                    <Entry
+                        Text="{Binding RegistrationNo}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Date">
+                    <Entry
+                        Text="{Binding Date}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Time">
+                    <Entry
+                        Text="{Binding Time}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Name" >
+                    <Entry
+                        Text="{Binding Name}" />
+                </sf:SfTextInputLayout>
+                
+                <sf:SfTextInputLayout 
+                    Hint="SO/DO/WO">
+                    <Entry
+                        Text="{Binding Description}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Mother Name">
+                    <Entry
+                        Text="{Binding MotherName}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Merital Status">
+                    <Entry
+                        Text="{Binding MaritalStatus}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Children">
+                    <Entry
+                        Text="{Binding Children}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Caste">
+                    <Entry
+                        Text="{Binding Caste}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Age">
+                    <Entry
+                        Text="{Binding Age}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Religion">
+                    <Entry
+                        Text="{Binding Religion}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Occupation">
+                    <Entry
+                        Text="{Binding Occupation}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Contact No">
+                    <Entry
+                        Text="{Binding ContactNo}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Address">
+                    <Entry
+                        Text="{Binding Address}" />
+                </sf:SfTextInputLayout>
+
+                <Label 
+                    Text="Vital Signs" 
+                    Style="{StaticResource Title2}"/>
+
+                <sf:SfTextInputLayout 
+                    Hint="BP">
+                    <Entry
+                        Text="{Binding Bp}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Temperature">
+                    <Entry
+                        Text="{Binding Temperature}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Pulse">
+                    <Entry
+                        Text="{Binding Pulse}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Respiration">
+                    <Entry
+                        Text="{Binding Respiration}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Height">
+                    <Entry
+                        Text="{Binding Height}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Weight">
+                    <Entry
+                        Text="{Binding Weight}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="BMI">
+                    <Picker 
+                        ItemsSource="{Binding BmiCategories}"
+                        SelectedItem="{Binding BmiCategory}"
+                        SelectedIndex="{Binding BmiCategoryIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Constitution">
+                    <Picker 
+                        ItemsSource="{Binding ConstitutionTypes}"
+                        SelectedItem="{Binding ConstitutionType}"
+                        SelectedIndex="{Binding ConstitutionTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Nature">
+                    <Picker 
+                        ItemsSource="{Binding NatureTypes}"
+                        SelectedItem="{Binding NatureType}"
+                        SelectedIndex="{Binding NatureTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Look">
+                    <Picker 
+                        ItemsSource="{Binding LookTypes}"
+                        SelectedItem="{Binding LookType}"
+                        SelectedIndex="{Binding LookTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Complexion">
+                    <Picker 
+                        ItemsSource="{Binding ComplexionTypes}"
+                        SelectedItem="{Binding ComplexionType}"
+                        SelectedIndex="{Binding ComplexionTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Temperament">
+                    <Picker 
+                        ItemsSource="{Binding TemperamentTypes}"
+                        SelectedItem="{Binding TemperamentType}"
+                        SelectedIndex="{Binding TemperamentTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Hand">
+                    <Picker 
+                        ItemsSource="{Binding HandTypes}"
+                        SelectedItem="{Binding HandType}"
+                        SelectedIndex="{Binding HandTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Face">
+                    <Picker 
+                        ItemsSource="{Binding FaceTypes}"
+                        SelectedItem="{Binding FaceType}"
+                        SelectedIndex="{Binding FaceTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Nail">
+                    <Picker 
+                        ItemsSource="{Binding NailTypes}"
+                        SelectedItem="{Binding NailType}"
+                        SelectedIndex="{Binding NailTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Speaking">
+                    <Picker 
+                        ItemsSource="{Binding SpeakingTypes}"
+                        SelectedItem="{Binding SpeakingType}"
+                        SelectedIndex="{Binding SpeakingTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Tongue">
+                    <Picker 
+                        ItemsSource="{Binding TongueTypes}"
+                        SelectedItem="{Binding TongueType}"
+                        SelectedIndex="{Binding TongueTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Hair">
+                    <Picker 
+                        ItemsSource="{Binding HairTypes}"
+                        SelectedItem="{Binding HairType}"
+                        SelectedIndex="{Binding HairTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Eyes">
+                    <Picker 
+                        ItemsSource="{Binding EyeTypes}"
+                        SelectedItem="{Binding EyeType}"
+                        SelectedIndex="{Binding EyeTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Present Complaints, in Chronological Order">
+                    <Editor
+                        Placeholder="Location, Sensation, Modalities, Amelioration,..."
+                        HeightRequest="250"/>
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Cause of Disease">
+                    <Picker 
+                        ItemsSource="{Binding CauseOfDiseaseTypes}"
+                        SelectedItem="{Binding CauseOfDiseaseType}"
+                        SelectedIndex="{Binding CauseOfDiseaseTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Sensation">
+                    <Picker 
+                        ItemsSource="{Binding SensationTypes}"
+                        SelectedItem="{Binding SensationType}"
+                        SelectedIndex="{Binding SensationTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Operations">
+                    <Picker 
+                        ItemsSource="{Binding Categories}"
+                        SelectedItem="{Binding Category}"
+                        SelectedIndex="{Binding CategoryIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Treatment Often Done">
+                    <Picker 
+                        ItemsSource="{Binding TreatmentTypes}"
+                        SelectedItem="{Binding TreatmentType}"
+                        SelectedIndex="{Binding TreatmentTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Responded to Treatment">
+                    <Picker 
+                        ItemsSource="{Binding RespondedToTreatmentTypes}"
+                        SelectedItem="{Binding RespondedToTreatmentType}"
+                        SelectedIndex="{Binding RespondedToTreatmentTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Blood Group">
+                    <Picker 
+                        ItemsSource="{Binding BloodGroupTypes}"
+                        SelectedItem="{Binding BloodGroupType}"
+                        SelectedIndex="{Binding BloodGroupTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Case Condition">
+                    <Picker 
+                        ItemsSource="{Binding CaseConditionTypes}"
+                        SelectedItem="{Binding CaseConditionType}"
+                        SelectedIndex="{Binding CaseConditionTypeIndex}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout 
+                    Hint="Personal Habit">
+                    <Picker 
+                        ItemsSource="{Binding Categories}"
+                        SelectedItem="{Binding Category}"
+                        SelectedIndex="{Binding CategoryIndex}" />
+                </sf:SfTextInputLayout>
+
+                <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
+                    <Label
+                        Grid.Column="0"
+                        Text="Past History" 
+                        Style="{StaticResource Title2}"/>
+
+                    <Button 
+                        Grid.Column="1"
+                        ImageSource="{StaticResource IconAdd}"
+                        Command="{Binding AddCategoryCommand}"
+                        SemanticProperties.Description="Add" />
+                </Grid>
+
+                <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
+                    BindableLayout.ItemsSource="{Binding Categories}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:Category">
+                            <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,*,*,3*,auto">
+                                <Entry Placeholder="Disease" IsEnabled="False"  Grid.Column="0" SemanticProperties.Description="Disease" />
+                                <Entry Placeholder="Age" IsEnabled="False" Grid.Column="1" SemanticProperties.Description="Age" />
+                                <Entry Placeholder="Duration" IsEnabled="False" Grid.Column="2" SemanticProperties.Description="Duration" />
+                                <Entry Placeholder="Medication" IsEnabled="False" Grid.Column="3" SemanticProperties.Description="Medication" />
+
+                                <Button 
+                                    ImageSource="{StaticResource IconDelete}"
+                                    Background="Transparent"
+                                    Command="{Binding DeleteCategoryCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
+                                    Grid.Column="4"
+                                    SemanticProperties.Description="Delete" />
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <Label 
+                    Text="P.Q.R.S" 
+                    Style="{StaticResource Title2}"/>
+
+                <sf:SfTextInputLayout Hint="Pecular">
+                    <Editor Placeholder="Pecular" Text="{Binding Pecular}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Queer">
+                    <Editor Placeholder="Queer" Text="{Binding Queer}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Strange">
+                    <Editor Placeholder="Strange" Text="{Binding Strange}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Likes">
+                    <Editor Placeholder="Foods, Drinks, Dressing Colour, Places,..." Text="{Binding Likes}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Dislikes">
+                    <Editor Placeholder="Foods, Drinks, Dressing Colour, Places,..." Text="{Binding Dislikes}" />
+                </sf:SfTextInputLayout>
+
+                <Label Text="Associate Symptoms" Style="{StaticResource Title2}" />
+
+                <sf:SfTextInputLayout Hint="Head">
+                    <Editor Placeholder="Head" Text="{Binding Head}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Eyes">
+                    <Editor Placeholder="Eyes" Text="{Binding Eyes}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Ear">
+                    <Editor Placeholder="Ear" Text="{Binding Ear}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Nose">
+                    <Editor Placeholder="Nose" Text="{Binding Nose}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Face">
+                    <Editor Placeholder="Face" Text="{Binding Face}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Teeth">
+                    <Editor Placeholder="Teeth" Text="{Binding Teeth}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Mouth">
+                    <Editor Placeholder="Mouth" Text="{Binding Mouth}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Throat">
+                    <Editor Placeholder="Throat" Text="{Binding Throat}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Thirst">
+                    <Editor Placeholder="Thirst" Text="{Binding Thirst}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Diet">
+                    <Editor Placeholder="Diet" Text="{Binding Diet}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Abdomen">
+                    <Editor Placeholder="Abdomen" Text="{Binding Abdomen}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Stool">
+                    <Editor Placeholder="Stool" Text="{Binding Stool}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Urine">
+                    <Editor Placeholder="Urine" Text="{Binding Urine}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Lungs">
+                    <Editor Placeholder="Lungs" Text="{Binding Lungs}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Heart">
+                    <Editor Placeholder="Heart" Text="{Binding Heart}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Spine">
+                    <Editor Placeholder="Spine" Text="{Binding Spine}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Male Genital (Organic)">
+                    <Editor Placeholder="Male Genital (Organic)" Text="{Binding MaleGenitalOrganic}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Male Genital (Functional)">
+                    <Editor Placeholder="Male Genital (Functional)" Text="{Binding MaleGenitalFunctional}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Female Genital (Organic)">
+                    <Editor Placeholder="Female Genital (Organic)" Text="{Binding FemaleGenitalOrganic}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Female Genital (Functional)">
+                    <Editor Placeholder="Female Genital (Functional)" Text="{Binding FemaleGenitalFunctional}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Sleep">
+                    <Editor Placeholder="Sleep" Text="{Binding Sleep}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Skin">
+                    <Editor Placeholder="Skin" Text="{Binding Skin}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Fever">
+                    <Editor Placeholder="Fever" Text="{Binding Fever}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Dreams">
+                    <Editor Placeholder="Dreams" Text="{Binding Dreams}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Aversions">
+                    <Editor Placeholder="Aversions" Text="{Binding Aversions}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Sweat">
+                    <Editor Placeholder="Sweat" Text="{Binding Sweat}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Time">
+                    <Editor Placeholder="Time" Text="{Binding Time}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Side">
+                    <Editor Placeholder="Side" Text="{Binding Side}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Thermally">
+                    <Editor Placeholder="Thermally" Text="{Binding Thermally}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="X-Ray Findings">
+                    <Editor Placeholder="X-Ray Findings" Text="{Binding XRayFindings}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="USG Opinion">
+                    <Editor Placeholder="USG Opinion" Text="{Binding UsgOpinion}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="CT Scan Findings">
+                    <Editor Placeholder="CT Scan Findings" Text="{Binding CtScanFindings}" />
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="MRI Findings">
+                    <Editor Placeholder="MRI Findings" Text="{Binding MriFindings}" />
+                </sf:SfTextInputLayout>
+
+
+                <sf:SfTextInputLayout 
+                    Hint="Category">
+                    <Picker 
+                        ItemsSource="{Binding Categories}"
+                        SelectedItem="{Binding Category}"
+                        SelectedIndex="{Binding CategoryIndex}" />
+                </sf:SfTextInputLayout>
+
+                <Label 
+                    Text="Icon" 
+                    Style="{StaticResource Title2}"/>
+                <CollectionView 
+                    HeightRequest="44" Margin="0,0,0,15"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding Icon}"
+                    ItemsSource="{Binding Icons}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:IconData">
+                            <Grid RowDefinitions="Auto,4" RowSpacing="{StaticResource size60}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                <Setter TargetName="SelectedIndicator" Property="BoxView.IsVisible" Value="False"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter TargetName="SelectedIndicator" Property="BoxView.IsVisible" Value="True"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                
+                                <Label 
+                                    Text="{Binding Icon}" 
+                                    x:Name="IconImage"
+                                    FontFamily="{x:Static fonts:FluentUI.FontFamily}" 
+                                    FontSize="24" 
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    SemanticProperties.Description="{Binding Description}"
+                                    SemanticProperties.Hint="Icon representing the type of task . Tap to select"
+                                    TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"/>
+                                <BoxView x:Name="SelectedIndicator" Color="{StaticResource Primary}" HeightRequest="4" HorizontalOptions="Fill" Grid.Row="1"/>
+                            </Grid>                            
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="{StaticResource LayoutSpacing}"/>
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
+                
+
+                <Label 
+                    Text="Tags" 
+                    Style="{StaticResource Title2}"/>
+                <ScrollView Orientation="Horizontal">
+                    <HorizontalStackLayout 
+                        Spacing="{StaticResource LayoutSpacing}" 
+                        HeightRequest="44" 
+                        Margin="0,0,0,15"
+                        BindableLayout.ItemsSource="{Binding AllTags}" 
+                        BindableLayout.ItemTemplateSelector="{StaticResource ChipDataTemplateSelector}"/>
+                </ScrollView>
+
+                <Button Text="Save" 
+                    HeightRequest="{OnIdiom 44, Desktop=60}"
+                    Command="{Binding SaveCommand}" />
+
+                <Grid HeightRequest="44">
+                    <Label 
+                        Text="Tasks" 
+                        Style="{StaticResource Title2}" 
+                        VerticalOptions="Center"/>
+                    <ImageButton 
+                        Source="{StaticResource IconClean}"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        Aspect="Center"
+                        HeightRequest="44"
+                        WidthRequest="44"
+                        IsVisible="{Binding HasCompletedTasks}"
+                        Command="{Binding CleanTasksCommand}"
+                        />
+                </Grid>
+                <VerticalStackLayout 
+                    Spacing="{StaticResource LayoutSpacing}"
+                    BindableLayout.ItemsSource="{Binding Tasks}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <controls:TaskView TaskCompletedCommand="{Binding TaskCompletedCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}" />
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <controls:AddButton Command="{Binding AddTaskCommand}" />
+    </Grid>
+    
+</ContentPage>
