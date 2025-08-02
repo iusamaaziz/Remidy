@@ -177,37 +177,43 @@
                 <sf:SfTextInputLayout 
                     Hint="BP">
                     <Entry
-                        Text="{Binding Bp}" />
+                        Text="{Binding Bp}"
+                        Keyboard="Numeric" />
                 </sf:SfTextInputLayout>
 
                 <sf:SfTextInputLayout 
                     Hint="Temperature">
                     <Entry
-                        Text="{Binding Temperature}" />
+                        Text="{Binding Temperature}"
+                        Keyboard="Numeric" />
                 </sf:SfTextInputLayout>
 
                 <sf:SfTextInputLayout 
                     Hint="Pulse">
                     <Entry
-                        Text="{Binding Pulse}" />
+                        Text="{Binding Pulse}"
+                        Keyboard="Numeric" />
                 </sf:SfTextInputLayout>
 
                 <sf:SfTextInputLayout 
                     Hint="Respiration">
                     <Entry
-                        Text="{Binding Respiration}" />
+                        Text="{Binding Respiration}"
+                        Keyboard="Numeric" />
                 </sf:SfTextInputLayout>
 
                 <sf:SfTextInputLayout 
                     Hint="Height">
                     <Entry
-                        Text="{Binding Height}" />
+                        Text="{Binding Height}"
+                        Keyboard="Numeric" />
                 </sf:SfTextInputLayout>
 
                 <sf:SfTextInputLayout 
                     Hint="Weight">
                     <Entry
-                        Text="{Binding Weight}" />
+                        Text="{Binding Weight}"
+                        Keyboard="Numeric" />
                 </sf:SfTextInputLayout>
 
                 <sf:SfTextInputLayout 
@@ -316,6 +322,7 @@
 
                 <sf:SfTextInputLayout Hint="Present Complaints, in Chronological Order">
                     <Editor
+                        Text="{Binding PresentComplaints}"
                         Placeholder="Location, Sensation, Modalities, Amelioration,..."
                         HeightRequest="250"/>
                 </sf:SfTextInputLayout>
@@ -379,9 +386,9 @@
                 <sf:SfTextInputLayout 
                     Hint="Personal Habit">
                     <Picker 
-                        ItemsSource="{Binding Categories}"
-                        SelectedItem="{Binding Category}"
-                        SelectedIndex="{Binding CategoryIndex}" />
+                        ItemsSource="{Binding PersonalHabitTypes}"
+                        SelectedItem="{Binding PersonalHabitType}"
+                        SelectedIndex="{Binding PersonalHabitTypeIndex}" />
                 </sf:SfTextInputLayout>
 
                 <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">

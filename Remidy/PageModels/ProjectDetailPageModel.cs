@@ -193,6 +193,11 @@ namespace Remidy.PageModels
         [ObservableProperty] private CaseConditionType? _caseConditionType;
         [ObservableProperty] private int _caseConditionTypeIndex = -1;
 
+        // Personal Habit
+        [ObservableProperty] private List<PersonalHabitType> _personalHabitTypes = new();
+        [ObservableProperty] private PersonalHabitType? _personalHabitType;
+        [ObservableProperty] private int _personalHabitTypeIndex = -1;
+
         [ObservableProperty]
         private List<Tag> _allTags = [];
 
@@ -217,12 +222,14 @@ namespace Remidy.PageModels
         [ObservableProperty] private string _contactNo;
 
         // Vital Signs
-        [ObservableProperty] private double? _bp;
-        [ObservableProperty] private double? _temperature;
-        [ObservableProperty] private int? _pulse;
-        [ObservableProperty] private int? _respiration;
-        [ObservableProperty] private double? _height;
-        [ObservableProperty] private double? _weight;
+        [ObservableProperty] private string _bp = string.Empty;
+        [ObservableProperty] private string _temperature = string.Empty;
+        [ObservableProperty] private string _pulse = string.Empty;
+        [ObservableProperty] private string _respiration = string.Empty;
+        [ObservableProperty] private string _height = string.Empty;
+        [ObservableProperty] private string _weight = string.Empty;
+
+        [ObservableProperty] private string _presentComplaints = string.Empty;
 
         [ObservableProperty] private string _pecular;
         [ObservableProperty] private string _queer;
@@ -308,7 +315,7 @@ namespace Remidy.PageModels
             }
             else
             {
-                Task.WhenAll(LoadCategories(), LoadTags(), LoadHandTypes(), LoadBMITypes()).FireAndForgetSafeAsync(_errorHandler);
+                Task.WhenAll(LoadCategories(), LoadTags(), LoadHandTypes(), LoadBMITypes(), LoadPersonalHabitTypes()).FireAndForgetSafeAsync(_errorHandler);
                 _project = new();
                 _project.Tags = [];
                 _project.Tasks = [];
@@ -327,6 +334,9 @@ namespace Remidy.PageModels
 
         private async Task LoadTags() =>
             AllTags = await _tagRepository.ListAsync();
+
+        private async Task LoadPersonalHabitTypes() =>
+            PersonalHabitTypes = await _lookupFactory.GetRepository<PersonalHabitType>().ListAsync();
 
         private async Task RefreshData()
         {
@@ -373,12 +383,12 @@ namespace Remidy.PageModels
                 ContactNo = _project.ContactNo;
 
                 // Vital Signs
-                Bp = _project.BP;
-                Temperature = _project.Temperature;
-                Pulse = _project.Pulse;
-                Respiration = _project.Respiration;
-                Height = _project.Height;
-                Weight = _project.Weight;
+                Bp = _project.BP?.ToString("F1") ?? string.Empty;
+                Temperature = _project.Temperature?.ToString("F1") ?? string.Empty;
+                Pulse = _project.Pulse?.ToString() ?? string.Empty;
+                Respiration = _project.Respiration?.ToString() ?? string.Empty;
+                Height = _project.Height?.ToString("F1") ?? string.Empty;
+                Weight = _project.Weight?.ToString("F1") ?? string.Empty;
 
                 TemperamentTypes = await _lookupFactory.GetRepository<TemperamentType>().ListAsync();
                 TemperamentType = TemperamentTypes?.FirstOrDefault(h => h.Id == _project.TemperamentTypeId);
@@ -471,6 +481,11 @@ namespace Remidy.PageModels
                 CaseConditionType = CaseConditionTypes.FirstOrDefault(c => c.Id == _project.CaseConditionTypeId);
                 CaseConditionTypeIndex = CaseConditionTypes.FindIndex(c => c.Id == _project.CaseConditionTypeId);
 
+                PersonalHabitTypes = await _lookupFactory.GetRepository<PersonalHabitType>().ListAsync();
+                PersonalHabitType = PersonalHabitTypes.FirstOrDefault(c => c.Id == _project.PersonalHabitTypeId);
+                PersonalHabitTypeIndex = PersonalHabitTypes.FindIndex(c => c.Id == _project.PersonalHabitTypeId);
+
+                PresentComplaints = _project.PresentComplaints;
                 Pecular = _project.Pecular;
                 Queer = _project.Queer;
                 Strange = _project.Strange;
@@ -570,12 +585,12 @@ namespace Remidy.PageModels
             _project.ContactNo = ContactNo;
 
             // Vital signs
-            _project.BP = Bp;
-            _project.Temperature = Temperature;
-            _project.Pulse = Pulse;
-            _project.Respiration = Respiration;
-            _project.Height = Height;
-            _project.Weight = Weight;
+            _project.BP = double.TryParse(Bp, out var bp) ? bp : null;
+            _project.Temperature = double.TryParse(Temperature, out var temp) ? temp : null;
+            _project.Pulse = int.TryParse(Pulse, out var pulse) ? pulse : null;
+            _project.Respiration = int.TryParse(Respiration, out var respiration) ? respiration : null;
+            _project.Height = double.TryParse(Height, out var height) ? height : null;
+            _project.Weight = double.TryParse(Weight, out var weight) ? weight : null;
 
             _project.BmiCategoryId = BmiCategory?.Id ?? 0;
             _project.ConstitutionTypeId = ConstitutionType?.Id ?? 0;
@@ -596,7 +611,9 @@ namespace Remidy.PageModels
             _project.RespondedToTreatmentTypeId = RespondedToTreatmentType?.Id ?? 0;
             _project.BloodGroupTypeId = BloodGroupType?.Id ?? 0;
             _project.CaseConditionTypeId = CaseConditionType?.Id ?? 0;
+            _project.PersonalHabitTypeId = PersonalHabitType?.Id ?? 0;
 
+            _project.PresentComplaints = PresentComplaints;
             _project.Pecular = Pecular;
             _project.Queer = Queer;
             _project.Strange = Strange;

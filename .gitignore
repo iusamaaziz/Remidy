@@ -1,0 +1,112 @@
+# Build output directories
+obj/
+bin/
+Remidy/obj/
+Remidy/bin/
+
+# .NET Core / .NET 5+ / .NET 6+ build output
+**/bin/
+**/obj/
+
+# Visual Studio files
+.vs/
+*.sln.docstates
+*.csproj.user
+*.vbproj.user
+*.vcxproj.user
+*.vcxproj.filters
+*.vcxproj.user
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# MAUI Specific
+Platforms/Android/Resources/
+Platforms/iOS/Resources/
+wwwroot/
+
+# Xamarin
+*.userprefs
+*.cachefile
+*.ipa
+*.apk
+*.aab
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# SQLite databases (if you want to ignore local db files)
+*.db
+*.sqlite
+*.sqlite3
+
+# User-specific files
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
+# MSTest test results
+TestResults/
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# Coverage reports
+coverage*.xml
+coverage*.json
+coverage*.info
+lcov.info
+
+# Azure
+*.pubxml
+*.publishproj
+
+# Package managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*

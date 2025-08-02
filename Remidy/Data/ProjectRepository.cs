@@ -119,7 +119,15 @@ namespace Remidy.Data
                 USGOpinion TEXT,
                 CTScanFindings TEXT,
                 MRIFindings TEXT,
-                Nose TEXT
+                Nose TEXT,
+                CauseOfDiseaseTypeId INTEGER,
+                SensationTypeId INTEGER,
+                TreatmentTypeId INTEGER,
+                RespondedToTreatmentTypeId INTEGER,
+                BloodGroupTypeId INTEGER,
+                CaseConditionTypeId INTEGER,
+                PersonalHabitTypeId INTEGER,
+                PresentComplaints TEXT
             );";
                 await createTableCmd.ExecuteNonQueryAsync();
             }
@@ -227,6 +235,14 @@ namespace Remidy.Data
                     CTScanFindings = reader.IsDBNull(70) ? null : reader.GetString(70),
                     MRIFindings = reader.IsDBNull(71) ? null : reader.GetString(71),
                     Nose = reader.IsDBNull(72) ? null : reader.GetString(72),
+                    CauseOfDiseaseTypeId = reader.IsDBNull(73) ? 0 : reader.GetInt32(73),
+                    SensationTypeId = reader.IsDBNull(74) ? 0 : reader.GetInt32(74),
+                    TreatmentTypeId = reader.IsDBNull(75) ? 0 : reader.GetInt32(75),
+                    RespondedToTreatmentTypeId = reader.IsDBNull(76) ? 0 : reader.GetInt32(76),
+                    BloodGroupTypeId = reader.IsDBNull(77) ? 0 : reader.GetInt32(77),
+                    CaseConditionTypeId = reader.IsDBNull(78) ? 0 : reader.GetInt32(78),
+                    PersonalHabitTypeId = reader.IsDBNull(79) ? 0 : reader.GetInt32(79),
+                    PresentComplaints = reader.IsDBNull(80) ? null : reader.GetString(80),
                 });
             }
 
@@ -335,6 +351,14 @@ namespace Remidy.Data
                     CTScanFindings = reader.IsDBNull(70) ? null : reader.GetString(70),
                     MRIFindings = reader.IsDBNull(71) ? null : reader.GetString(71),
                     Nose = reader.IsDBNull(72) ? null : reader.GetString(72),
+                    CauseOfDiseaseTypeId = reader.IsDBNull(73) ? 0 : reader.GetInt32(73),
+                    SensationTypeId = reader.IsDBNull(74) ? 0 : reader.GetInt32(74),
+                    TreatmentTypeId = reader.IsDBNull(75) ? 0 : reader.GetInt32(75),
+                    RespondedToTreatmentTypeId = reader.IsDBNull(76) ? 0 : reader.GetInt32(76),
+                    BloodGroupTypeId = reader.IsDBNull(77) ? 0 : reader.GetInt32(77),
+                    CaseConditionTypeId = reader.IsDBNull(78) ? 0 : reader.GetInt32(78),
+                    PersonalHabitTypeId = reader.IsDBNull(79) ? 0 : reader.GetInt32(79),
+                    PresentComplaints = reader.IsDBNull(80) ? null : reader.GetString(80),
                 };
 
                 project.Tags = await _tagRepository.ListAsync(project.ID);
@@ -373,7 +397,9 @@ namespace Remidy.Data
                         Lungs, Heart, Spine, MaleGenitalOrganic, MaleGenitalFunctional,
                         FemaleGenitalOrganic, FemaleGenitalFunctional, Sleep, Skin, Fever,
                         Dreams, Aversions, Sweat, Side, Thermally,
-                        XRayFindings, USGOpinion, CTScanFindings, MRIFindings, Nose
+                        XRayFindings, USGOpinion, CTScanFindings, MRIFindings, Nose,
+                        CauseOfDiseaseTypeId, SensationTypeId, TreatmentTypeId, RespondedToTreatmentTypeId,
+                        BloodGroupTypeId, CaseConditionTypeId, PersonalHabitTypeId, PresentComplaints
                     ) VALUES (
                         @Name, @Description, @Icon, @RegistrationNo, @Date, @Time, @MotherName, @MaritalStatus, @Children, @Caste, @Age,
                         @Religion, @Occupation, @Address, @ContactNo,
@@ -386,7 +412,9 @@ namespace Remidy.Data
                         @Lungs, @Heart, @Spine, @MaleGenitalOrganic, @MaleGenitalFunctional,
                         @FemaleGenitalOrganic, @FemaleGenitalFunctional, @Sleep, @Skin, @Fever,
                         @Dreams, @Aversions, @Sweat, @Side, @Thermally,
-                        @XRayFindings, @USGOpinion, @CTScanFindings, @MRIFindings, @Nose
+                        @XRayFindings, @USGOpinion, @CTScanFindings, @MRIFindings, @Nose,
+                        @CauseOfDiseaseTypeId, @SensationTypeId, @TreatmentTypeId, @RespondedToTreatmentTypeId,
+                        @BloodGroupTypeId, @CaseConditionTypeId, @PersonalHabitTypeId, @PresentComplaints
                     );
                     SELECT last_insert_rowid();";
                         }
@@ -412,7 +440,10 @@ namespace Remidy.Data
                     FemaleGenitalOrganic = @FemaleGenitalOrganic, FemaleGenitalFunctional = @FemaleGenitalFunctional, Sleep = @Sleep,
                     Skin = @Skin, Fever = @Fever, Dreams = @Dreams, Aversions = @Aversions,
                     Sweat = @Sweat, Side = @Side, Thermally = @Thermally,
-                    XRayFindings = @XRayFindings, USGOpinion = @USGOpinion, CTScanFindings = @CTScanFindings, MRIFindings = @MRIFindings, Nose = @Nose
+                    XRayFindings = @XRayFindings, USGOpinion = @USGOpinion, CTScanFindings = @CTScanFindings, MRIFindings = @MRIFindings, Nose = @Nose,
+                    CauseOfDiseaseTypeId = @CauseOfDiseaseTypeId, SensationTypeId = @SensationTypeId, TreatmentTypeId = @TreatmentTypeId,
+                    RespondedToTreatmentTypeId = @RespondedToTreatmentTypeId, BloodGroupTypeId = @BloodGroupTypeId,
+                    CaseConditionTypeId = @CaseConditionTypeId, PersonalHabitTypeId = @PersonalHabitTypeId, PresentComplaints = @PresentComplaints
                     WHERE ID = @ID";
 
                 saveCmd.Parameters.AddWithValue("@ID", item.ID);
@@ -490,6 +521,14 @@ namespace Remidy.Data
             saveCmd.Parameters.AddWithValue("@CTScanFindings", (object?)item.CTScanFindings ?? DBNull.Value);
             saveCmd.Parameters.AddWithValue("@MRIFindings", (object?)item.MRIFindings ?? DBNull.Value);
             saveCmd.Parameters.AddWithValue("@Nose", (object?)item.Nose ?? DBNull.Value);
+            saveCmd.Parameters.AddWithValue("@CauseOfDiseaseTypeId", item.CauseOfDiseaseTypeId);
+            saveCmd.Parameters.AddWithValue("@SensationTypeId", item.SensationTypeId);
+            saveCmd.Parameters.AddWithValue("@TreatmentTypeId", item.TreatmentTypeId);
+            saveCmd.Parameters.AddWithValue("@RespondedToTreatmentTypeId", item.RespondedToTreatmentTypeId);
+            saveCmd.Parameters.AddWithValue("@BloodGroupTypeId", item.BloodGroupTypeId);
+            saveCmd.Parameters.AddWithValue("@CaseConditionTypeId", item.CaseConditionTypeId);
+            saveCmd.Parameters.AddWithValue("@PersonalHabitTypeId", item.PersonalHabitTypeId);
+            saveCmd.Parameters.AddWithValue("@PresentComplaints", (object?)item.PresentComplaints ?? DBNull.Value);
 
             var result = await saveCmd.ExecuteScalarAsync();
             if (item.ID == 0)

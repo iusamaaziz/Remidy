@@ -122,6 +122,13 @@ namespace Remidy.Models
         public int CaseConditionTypeId { get; set; }
         public CaseConditionType? CaseConditionType { get; set; }
 
+        // Personal Habit
+        [JsonIgnore]
+        public int PersonalHabitTypeId { get; set; }
+        public PersonalHabitType? PersonalHabitType { get; set; }
+
+        public string PresentComplaints { get; set; }
+
         public string Pecular { get; set; }
 
         public string Queer { get; set; }

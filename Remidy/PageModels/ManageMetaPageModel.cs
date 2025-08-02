@@ -572,6 +572,216 @@ namespace Remidy.PageModels
         }
         #endregion
 
+        #region CauseOfDisease
+        [RelayCommand]
+        private async Task SaveCauseOfDiseaseTypes()
+        {
+            foreach (var causeType in CauseOfDiseaseTypes)
+            {
+                await lookupFactory.GetRepository<CauseOfDiseaseType>().SaveItemAsync(causeType);
+            }
+
+            await AppShell.DisplayToastAsync("Causes of Disease saved");
+        }
+
+        [RelayCommand]
+        private async Task DeleteCauseOfDiseaseType(CauseOfDiseaseType cause)
+        {
+            CauseOfDiseaseTypes.Remove(cause);
+            await lookupFactory.GetRepository<CauseOfDiseaseType>().DeleteItemAsync(cause);
+            await AppShell.DisplayToastAsync("Cause of Disease deleted");
+        }
+
+        [RelayCommand]
+        private async Task AddCauseOfDiseaseType()
+        {
+            var cause = new CauseOfDiseaseType();
+            CauseOfDiseaseTypes.Add(cause);
+            await lookupFactory.GetRepository<CauseOfDiseaseType>().SaveItemAsync(cause);
+            await AppShell.DisplayToastAsync("Cause of Disease added");
+        }
+        #endregion
+
+        #region Sensation
+        [RelayCommand]
+        private async Task SaveSensationTypes()
+        {
+            foreach (var sensationType in SensationTypes)
+            {
+                await lookupFactory.GetRepository<SensationType>().SaveItemAsync(sensationType);
+            }
+
+            await AppShell.DisplayToastAsync("Sensations saved");
+        }
+
+        [RelayCommand]
+        private async Task DeleteSensationType(SensationType sensation)
+        {
+            SensationTypes.Remove(sensation);
+            await lookupFactory.GetRepository<SensationType>().DeleteItemAsync(sensation);
+            await AppShell.DisplayToastAsync("Sensation deleted");
+        }
+
+        [RelayCommand]
+        private async Task AddSensationType()
+        {
+            var sensation = new SensationType();
+            SensationTypes.Add(sensation);
+            await lookupFactory.GetRepository<SensationType>().SaveItemAsync(sensation);
+            await AppShell.DisplayToastAsync("Sensation added");
+        }
+        #endregion
+
+        #region Treatment
+        [RelayCommand]
+        private async Task SaveTreatmentTypes()
+        {
+            foreach (var treatmentType in TreatmentTypes)
+            {
+                await lookupFactory.GetRepository<TreatmentType>().SaveItemAsync(treatmentType);
+            }
+
+            await AppShell.DisplayToastAsync("Treatments saved");
+        }
+
+        [RelayCommand]
+        private async Task DeleteTreatmentType(TreatmentType treatment)
+        {
+            TreatmentTypes.Remove(treatment);
+            await lookupFactory.GetRepository<TreatmentType>().DeleteItemAsync(treatment);
+            await AppShell.DisplayToastAsync("Treatment deleted");
+        }
+
+        [RelayCommand]
+        private async Task AddTreatmentType()
+        {
+            var treatment = new TreatmentType();
+            TreatmentTypes.Add(treatment);
+            await lookupFactory.GetRepository<TreatmentType>().SaveItemAsync(treatment);
+            await AppShell.DisplayToastAsync("Treatment added");
+        }
+        #endregion
+
+        #region RespondedToTreatment
+        [RelayCommand]
+        private async Task SaveRespondedToTreatmentTypes()
+        {
+            foreach (var respondedType in RespondedToTreatmentTypes)
+            {
+                await lookupFactory.GetRepository<RespondedToTreatmentType>().SaveItemAsync(respondedType);
+            }
+
+            await AppShell.DisplayToastAsync("Treatment Responses saved");
+        }
+
+        [RelayCommand]
+        private async Task DeleteRespondedToTreatmentType(RespondedToTreatmentType responded)
+        {
+            RespondedToTreatmentTypes.Remove(responded);
+            await lookupFactory.GetRepository<RespondedToTreatmentType>().DeleteItemAsync(responded);
+            await AppShell.DisplayToastAsync("Treatment Response deleted");
+        }
+
+        [RelayCommand]
+        private async Task AddRespondedToTreatmentType()
+        {
+            var responded = new RespondedToTreatmentType();
+            RespondedToTreatmentTypes.Add(responded);
+            await lookupFactory.GetRepository<RespondedToTreatmentType>().SaveItemAsync(responded);
+            await AppShell.DisplayToastAsync("Treatment Response added");
+        }
+        #endregion
+
+        #region BloodGroup
+        [RelayCommand]
+        private async Task SaveBloodGroupTypes()
+        {
+            foreach (var bloodGroupType in BloodGroupTypes)
+            {
+                await lookupFactory.GetRepository<BloodGroupType>().SaveItemAsync(bloodGroupType);
+            }
+
+            await AppShell.DisplayToastAsync("Blood Groups saved");
+        }
+
+        [RelayCommand]
+        private async Task DeleteBloodGroupType(BloodGroupType bloodGroup)
+        {
+            BloodGroupTypes.Remove(bloodGroup);
+            await lookupFactory.GetRepository<BloodGroupType>().DeleteItemAsync(bloodGroup);
+            await AppShell.DisplayToastAsync("Blood Group deleted");
+        }
+
+        [RelayCommand]
+        private async Task AddBloodGroupType()
+        {
+            var bloodGroup = new BloodGroupType();
+            BloodGroupTypes.Add(bloodGroup);
+            await lookupFactory.GetRepository<BloodGroupType>().SaveItemAsync(bloodGroup);
+            await AppShell.DisplayToastAsync("Blood Group added");
+        }
+        #endregion
+
+        #region CaseCondition
+        [RelayCommand]
+        private async Task SaveCaseConditionTypes()
+        {
+            foreach (var caseConditionType in CaseConditionTypes)
+            {
+                await lookupFactory.GetRepository<CaseConditionType>().SaveItemAsync(caseConditionType);
+            }
+
+            await AppShell.DisplayToastAsync("Case Conditions saved");
+        }
+
+        [RelayCommand]
+        private async Task DeleteCaseConditionType(CaseConditionType caseCondition)
+        {
+            CaseConditionTypes.Remove(caseCondition);
+            await lookupFactory.GetRepository<CaseConditionType>().DeleteItemAsync(caseCondition);
+            await AppShell.DisplayToastAsync("Case Condition deleted");
+        }
+
+        [RelayCommand]
+        private async Task AddCaseConditionType()
+        {
+            var caseCondition = new CaseConditionType();
+            CaseConditionTypes.Add(caseCondition);
+            await lookupFactory.GetRepository<CaseConditionType>().SaveItemAsync(caseCondition);
+            await AppShell.DisplayToastAsync("Case Condition added");
+        }
+        #endregion
+
+        #region PersonalHabit
+        [RelayCommand]
+        private async Task SavePersonalHabitTypes()
+        {
+            foreach (var personalHabitType in PersonalHabitTypes)
+            {
+                await lookupFactory.GetRepository<PersonalHabitType>().SaveItemAsync(personalHabitType);
+            }
+
+            await AppShell.DisplayToastAsync("Personal Habits saved");
+        }
+
+        [RelayCommand]
+        private async Task DeletePersonalHabitType(PersonalHabitType personalHabit)
+        {
+            PersonalHabitTypes.Remove(personalHabit);
+            await lookupFactory.GetRepository<PersonalHabitType>().DeleteItemAsync(personalHabit);
+            await AppShell.DisplayToastAsync("Personal Habit deleted");
+        }
+
+        [RelayCommand]
+        private async Task AddPersonalHabitType()
+        {
+            var personalHabit = new PersonalHabitType();
+            PersonalHabitTypes.Add(personalHabit);
+            await lookupFactory.GetRepository<PersonalHabitType>().SaveItemAsync(personalHabit);
+            await AppShell.DisplayToastAsync("Personal Habit added");
+        }
+        #endregion
+
         #region Tags
         [RelayCommand]
         private async Task SaveTags()

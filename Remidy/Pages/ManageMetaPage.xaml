@@ -455,16 +455,16 @@
 
             <Label Text="Causes of Disease" Style="{StaticResource Title2}"/>
             <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
-                BindableLayout.ItemsSource="{Binding EyeTypes}">
+                BindableLayout.ItemsSource="{Binding CauseOfDiseaseTypes}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:EyeType">
+                    <DataTemplate x:DataType="models:CauseOfDiseaseType">
                         <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,30,Auto">
                             <Entry Text="{Binding Title}" Grid.Column="0" SemanticProperties.Description="Title" />
 
                             <Button 
                                 ImageSource="{StaticResource IconDelete}"
                                 Background="Transparent"
-                                Command="{Binding DeleteEyeTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
+                                Command="{Binding DeleteCauseOfDiseaseTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
                                 Grid.Column="3"
                                 SemanticProperties.Description="Delete" />
                         </Grid>
@@ -473,26 +473,26 @@
             </VerticalStackLayout>
 
             <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
-                <Button Text="Save" Command="{Binding SaveEyeTypesCommand}"
+                <Button Text="Save" Command="{Binding SaveCauseOfDiseaseTypesCommand}"
                     HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
 
                 <Button ImageSource="{StaticResource IconAdd}"
-                    Command="{Binding AddEyeTypeCommand}" Grid.Column="1"
+                    Command="{Binding AddCauseOfDiseaseTypeCommand}" Grid.Column="1"
                     SemanticProperties.Description="Add" />
             </Grid>
 
             <Label Text="Sensations" Style="{StaticResource Title2}"/>
             <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
-                BindableLayout.ItemsSource="{Binding EyeTypes}">
+                BindableLayout.ItemsSource="{Binding SensationTypes}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:EyeType">
+                    <DataTemplate x:DataType="models:SensationType">
                         <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,30,Auto">
                             <Entry Text="{Binding Title}" Grid.Column="0" SemanticProperties.Description="Title" />
 
                             <Button 
                                 ImageSource="{StaticResource IconDelete}"
                                 Background="Transparent"
-                                Command="{Binding DeleteEyeTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
+                                Command="{Binding DeleteSensationTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
                                 Grid.Column="3"
                                 SemanticProperties.Description="Delete" />
                         </Grid>
@@ -501,54 +501,26 @@
             </VerticalStackLayout>
 
             <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
-                <Button Text="Save" Command="{Binding SaveEyeTypesCommand}"
+                <Button Text="Save" Command="{Binding SaveSensationTypesCommand}"
                     HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
 
                 <Button ImageSource="{StaticResource IconAdd}"
-                    Command="{Binding AddEyeTypeCommand}" Grid.Column="1"
-                    SemanticProperties.Description="Add" />
-            </Grid>
-
-            <Label Text="Operations" Style="{StaticResource Title2}"/>
-            <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
-                BindableLayout.ItemsSource="{Binding EyeTypes}">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:EyeType">
-                        <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,30,Auto">
-                            <Entry Text="{Binding Title}" Grid.Column="0" SemanticProperties.Description="Title" />
-
-                            <Button 
-                                ImageSource="{StaticResource IconDelete}"
-                                Background="Transparent"
-                                Command="{Binding DeleteEyeTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
-                                Grid.Column="3"
-                                SemanticProperties.Description="Delete" />
-                        </Grid>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </VerticalStackLayout>
-
-            <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
-                <Button Text="Save" Command="{Binding SaveEyeTypesCommand}"
-                    HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
-
-                <Button ImageSource="{StaticResource IconAdd}"
-                    Command="{Binding AddEyeTypeCommand}" Grid.Column="1"
+                    Command="{Binding AddSensationTypeCommand}" Grid.Column="1"
                     SemanticProperties.Description="Add" />
             </Grid>
 
             <Label Text="Treatment Types" Style="{StaticResource Title2}"/>
             <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
-                BindableLayout.ItemsSource="{Binding EyeTypes}">
+                BindableLayout.ItemsSource="{Binding TreatmentTypes}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:EyeType">
+                    <DataTemplate x:DataType="models:TreatmentType">
                         <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,30,Auto">
                             <Entry Text="{Binding Title}" Grid.Column="0" SemanticProperties.Description="Title" />
 
                             <Button 
                                 ImageSource="{StaticResource IconDelete}"
                                 Background="Transparent"
-                                Command="{Binding DeleteEyeTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
+                                Command="{Binding DeleteTreatmentTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
                                 Grid.Column="3"
                                 SemanticProperties.Description="Delete" />
                         </Grid>
@@ -557,26 +529,26 @@
             </VerticalStackLayout>
 
             <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
-                <Button Text="Save" Command="{Binding SaveEyeTypesCommand}"
+                <Button Text="Save" Command="{Binding SaveTreatmentTypesCommand}"
                     HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
 
                 <Button ImageSource="{StaticResource IconAdd}"
-                    Command="{Binding AddEyeTypeCommand}" Grid.Column="1"
+                    Command="{Binding AddTreatmentTypeCommand}" Grid.Column="1"
                     SemanticProperties.Description="Add" />
             </Grid>
 
             <Label Text="Treatment Responses" Style="{StaticResource Title2}"/>
             <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
-                BindableLayout.ItemsSource="{Binding EyeTypes}">
+                BindableLayout.ItemsSource="{Binding RespondedToTreatmentTypes}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:EyeType">
+                    <DataTemplate x:DataType="models:RespondedToTreatmentType">
                         <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,30,Auto">
                             <Entry Text="{Binding Title}" Grid.Column="0" SemanticProperties.Description="Title" />
 
                             <Button 
                                 ImageSource="{StaticResource IconDelete}"
                                 Background="Transparent"
-                                Command="{Binding DeleteEyeTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
+                                Command="{Binding DeleteRespondedToTreatmentTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
                                 Grid.Column="3"
                                 SemanticProperties.Description="Delete" />
                         </Grid>
@@ -585,26 +557,26 @@
             </VerticalStackLayout>
 
             <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
-                <Button Text="Save" Command="{Binding SaveEyeTypesCommand}"
+                <Button Text="Save" Command="{Binding SaveRespondedToTreatmentTypesCommand}"
                     HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
 
                 <Button ImageSource="{StaticResource IconAdd}"
-                    Command="{Binding AddEyeTypeCommand}" Grid.Column="1"
+                    Command="{Binding AddRespondedToTreatmentTypeCommand}" Grid.Column="1"
                     SemanticProperties.Description="Add" />
             </Grid>
 
             <Label Text="Blood Groups" Style="{StaticResource Title2}"/>
             <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
-                BindableLayout.ItemsSource="{Binding EyeTypes}">
+                BindableLayout.ItemsSource="{Binding BloodGroupTypes}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:EyeType">
+                    <DataTemplate x:DataType="models:BloodGroupType">
                         <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,30,Auto">
                             <Entry Text="{Binding Title}" Grid.Column="0" SemanticProperties.Description="Title" />
 
                             <Button 
                                 ImageSource="{StaticResource IconDelete}"
                                 Background="Transparent"
-                                Command="{Binding DeleteEyeTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
+                                Command="{Binding DeleteBloodGroupTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
                                 Grid.Column="3"
                                 SemanticProperties.Description="Delete" />
                         </Grid>
@@ -613,54 +585,26 @@
             </VerticalStackLayout>
 
             <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
-                <Button Text="Save" Command="{Binding SaveEyeTypesCommand}"
+                <Button Text="Save" Command="{Binding SaveBloodGroupTypesCommand}"
                     HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
 
                 <Button ImageSource="{StaticResource IconAdd}"
-                    Command="{Binding AddEyeTypeCommand}" Grid.Column="1"
-                    SemanticProperties.Description="Add" />
-            </Grid>
-
-            <Label Text="Sleep" Style="{StaticResource Title2}"/>
-            <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
-                BindableLayout.ItemsSource="{Binding EyeTypes}">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:EyeType">
-                        <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,30,Auto">
-                            <Entry Text="{Binding Title}" Grid.Column="0" SemanticProperties.Description="Title" />
-
-                            <Button 
-                                ImageSource="{StaticResource IconDelete}"
-                                Background="Transparent"
-                                Command="{Binding DeleteEyeTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
-                                Grid.Column="3"
-                                SemanticProperties.Description="Delete" />
-                        </Grid>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </VerticalStackLayout>
-
-            <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
-                <Button Text="Save" Command="{Binding SaveEyeTypesCommand}"
-                    HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
-
-                <Button ImageSource="{StaticResource IconAdd}"
-                    Command="{Binding AddEyeTypeCommand}" Grid.Column="1"
+                    Command="{Binding AddBloodGroupTypeCommand}" Grid.Column="1"
                     SemanticProperties.Description="Add" />
             </Grid>
 
             <Label Text="Case Conditions" Style="{StaticResource Title2}"/>
             <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
-                BindableLayout.ItemsSource="{Binding EyeTypes}">
+                BindableLayout.ItemsSource="{Binding CaseConditionTypes}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:EyeType">
+                    <DataTemplate x:DataType="models:CaseConditionType">
                         <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,30,Auto">
                             <Entry Text="{Binding Title}" Grid.Column="0" SemanticProperties.Description="Title" />
 
                             <Button 
                                 ImageSource="{StaticResource IconDelete}"
                                 Background="Transparent"
-                                Command="{Binding DeleteEyeTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
+                                Command="{Binding DeleteCaseConditionTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
                                 Grid.Column="3"
                                 SemanticProperties.Description="Delete" />
                         </Grid>
@@ -669,26 +613,26 @@
             </VerticalStackLayout>
 
             <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
-                <Button Text="Save" Command="{Binding SaveEyeTypesCommand}"
+                <Button Text="Save" Command="{Binding SaveCaseConditionTypesCommand}"
                     HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
 
                 <Button ImageSource="{StaticResource IconAdd}"
-                    Command="{Binding AddEyeTypeCommand}" Grid.Column="1"
+                    Command="{Binding AddCaseConditionTypeCommand}" Grid.Column="1"
                     SemanticProperties.Description="Add" />
             </Grid>
 
             <Label Text="Personal Habits" Style="{StaticResource Title2}"/>
             <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
-                BindableLayout.ItemsSource="{Binding EyeTypes}">
+                BindableLayout.ItemsSource="{Binding PersonalHabitTypes}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:EyeType">
+                    <DataTemplate x:DataType="models:PersonalHabitType">
                         <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,30,Auto">
                             <Entry Text="{Binding Title}" Grid.Column="0" SemanticProperties.Description="Title" />
 
                             <Button 
                                 ImageSource="{StaticResource IconDelete}"
                                 Background="Transparent"
-                                Command="{Binding DeleteEyeTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
+                                Command="{Binding DeletePersonalHabitTypeCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
                                 Grid.Column="3"
                                 SemanticProperties.Description="Delete" />
                         </Grid>
@@ -697,11 +641,11 @@
             </VerticalStackLayout>
 
             <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
-                <Button Text="Save" Command="{Binding SaveEyeTypesCommand}"
+                <Button Text="Save" Command="{Binding SavePersonalHabitTypesCommand}"
                     HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
 
                 <Button ImageSource="{StaticResource IconAdd}"
-                    Command="{Binding AddEyeTypeCommand}" Grid.Column="1"
+                    Command="{Binding AddPersonalHabitTypeCommand}" Grid.Column="1"
                     SemanticProperties.Description="Add" />
             </Grid>
             
