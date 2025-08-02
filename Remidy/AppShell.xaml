@@ -26,6 +26,12 @@
         ContentTemplate="{DataTemplate pages:ManageMetaPage}"
         Route="manage" />
 
+    <ShellContent
+        Title="Backup &amp; Restore"
+        Icon="{StaticResource IconBackup}"
+        ContentTemplate="{DataTemplate pages:BackupRestorePage}"
+        Route="backup" />
+
     <Shell.FlyoutFooter>
         <Grid Padding="15">
             <sf:SfSegmentedControl x:Name="ThemeSegmentedControl" 

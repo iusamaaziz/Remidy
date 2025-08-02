@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    BackupRestorePage.xaml
+    
+    Purpose: Database backup and restore management page
+    
+    Features:
+    - Create database backups to user-selected locations
+    - Restore database from backup files
+    - Display backup status and information
+    - User-friendly interface with clear instructions
+    - Safety warnings for restore operations
+    
+    UI Components:
+    - Backup section with create backup button
+    - Restore section with restore button and warnings
+    - Status display for operation results
+    - Information panels for user guidance
+-->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pageModels="clr-namespace:Remidy.PageModels"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit;assembly=Syncfusion.Maui.Toolkit"
+             x:Class="Remidy.Pages.BackupRestorePage"
+             x:DataType="pageModels:BackupRestorePageModel"
+             Title="Database Backup &amp; Restore">
+
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutPadding}" Spacing="{StaticResource LayoutSpacing}">
+            
+            <!-- Page Header -->
+            <Label Text="Database Backup &amp; Restore" 
+                   Style="{StaticResource Title1}" 
+                   HorizontalOptions="Center" 
+                   Margin="0,0,0,20" />
+            
+            <Label Text="Manage your medical case database backups" 
+                   Style="{StaticResource Body}" 
+                   HorizontalOptions="Center" 
+                   Margin="0,0,0,30" />
+
+            <!-- Backup Section -->
+            <Border Stroke="{StaticResource Primary}" 
+                    StrokeThickness="2" 
+                    Padding="20">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="📁 Create Backup" 
+                           Style="{StaticResource Title2}" 
+                           TextColor="{StaticResource Primary}" />
+                    
+                    <Label Text="Create a backup of your current database to save all patient cases and medical data." 
+                           Style="{StaticResource Body}" />
+                    
+                    <Label Text="• Backup includes all patient records, medical classifications, and settings&#x0a;• Choose your preferred backup folder&#x0a;• Backup files are timestamped for easy identification" 
+                           Style="{StaticResource Body}" 
+                           TextColor="{StaticResource Gray500}" />
+                    
+                    <Button Text="Create Backup" 
+                            Command="{Binding CreateBackupCommand}"
+                            IsEnabled="{Binding IsNotBusy}"
+                            Style="{StaticResource PrimaryButton}" 
+                            Margin="0,10,0,0" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Restore Section -->
+            <Border Stroke="{StaticResource Warning}" 
+                    StrokeThickness="2" 
+                    Padding="20">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="🔄 Restore Database" 
+                           Style="{StaticResource Title2}" 
+                           TextColor="{StaticResource Warning}" />
+                    
+                    <Label Text="Restore your database from a previously created backup file." 
+                           Style="{StaticResource Body}" />
+                    
+                    <Border BackgroundColor="{StaticResource Warning}" 
+                            Opacity="0.1" 
+                            Padding="15">
+                        <Label Text="⚠️ Warning: Restoring will replace your current database. All current data will be lost unless you create a backup first." 
+                               Style="{StaticResource Body}" 
+                               TextColor="{StaticResource Warning}" />
+                    </Border>
+                    
+                    <Label Text="• Select a backup file to restore from&#x0a;• Current database will be automatically backed up before restore&#x0a;• Application will restart after successful restore" 
+                           Style="{StaticResource Body}" 
+                           TextColor="{StaticResource Gray500}" />
+                    
+                    <Button Text="Restore Database" 
+                            Command="{Binding RestoreDatabaseCommand}"
+                            IsEnabled="{Binding IsNotBusy}"
+                            BackgroundColor="{StaticResource Warning}"
+                            Margin="0,10,0,0" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Status Section -->
+            <Border IsVisible="{Binding HasStatusMessage}" 
+                    BackgroundColor="{StaticResource LightSecondaryBackground}" 
+                    Padding="20">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="📊 Operation Status" 
+                           Style="{StaticResource Title2}" />
+                    
+                    <Label Text="{Binding StatusMessage}" 
+                           Style="{StaticResource Body}" 
+                           TextColor="{Binding StatusColor}" />
+                    
+                    <Label IsVisible="{Binding HasBackupInfo}" 
+                           Text="{Binding BackupInfoText}" 
+                           Style="{StaticResource Body}" 
+                           TextColor="{StaticResource Gray500}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Information Section -->
+            <Border BackgroundColor="{StaticResource LightSecondaryBackground}" 
+                    Padding="20">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="ℹ️ Important Information" 
+                           Style="{StaticResource Title2}" />
+                    
+                    <Label Text="Database Location:" 
+                           Style="{StaticResource Body}" 
+                           FontAttributes="Bold" />
+                    <Label Text="{Binding DatabaseLocation}" 
+                           Style="{StaticResource Body}" 
+                           TextColor="{StaticResource Gray500}" />
+                    
+                    <Label Text="Backup Tips:" 
+                           Style="{StaticResource Body}" 
+                           FontAttributes="Bold" 
+                           Margin="0,10,0,0" />
+                    <Label Text="• Create regular backups before major changes&#x0a;• Store backups in multiple locations for safety&#x0a;• Test restore operations on a separate device first&#x0a;• Keep backup files secure as they contain patient data" 
+                           Style="{StaticResource Body}" 
+                           TextColor="{StaticResource Gray500}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Loading Indicator -->
+            <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                              IsRunning="{Binding IsBusy}" 
+                              Color="{StaticResource Primary}" 
+                              HorizontalOptions="Center" 
+                              Margin="0,20" />
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage> 
