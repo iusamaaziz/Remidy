@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Remidy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+cf00b15d4c24ecbf87de5e3601b705eba64733d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+9c273c6699e50f2aa96001ef58c898886f0fbbc1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Remidy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Remidy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

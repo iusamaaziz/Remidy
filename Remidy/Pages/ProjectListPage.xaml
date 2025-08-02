@@ -16,9 +16,24 @@
                 Command="{Binding AppearingCommand}" />
     </ContentPage.Behaviors>
     <Grid>
-      <ScrollView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Search Bar -->
+        <SearchBar Grid.Row="0"
+                   Text="{Binding SearchText}"
+                   Placeholder="Search by Registration # or Name..."
+                   Margin="{StaticResource LayoutPadding}"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource LightSecondaryBackground}, Dark={StaticResource DarkSecondaryBackground}}"
+                   TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground}, Dark={StaticResource LightOnDarkBackground}}"
+                   PlaceholderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}"
+                   CancelButtonColor="{StaticResource Primary}" />
+      
+      <ScrollView Grid.Row="1">
         <VerticalStackLayout 
-            BindableLayout.ItemsSource="{Binding Projects}" 
+            BindableLayout.ItemsSource="{Binding FilteredProjects}" 
             Margin="{StaticResource LayoutPadding}" 
             Spacing="{StaticResource LayoutSpacing}">
             <BindableLayout.ItemTemplate>
@@ -56,6 +71,7 @@
       </ScrollView>
 
         <controls:AddButton 
+            Grid.Row="1"
             Command="{Binding AddProjectCommand}" />
     </Grid>
 </ContentPage>
